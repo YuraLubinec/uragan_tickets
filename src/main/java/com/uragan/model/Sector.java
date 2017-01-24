@@ -49,7 +49,7 @@ public class Sector {
     this.price = price;
   }
 
-  @OneToMany(mappedBy = "sector")
+  @OneToMany(mappedBy = "id")
   public Set<Seat> getSeats() {
     return seats;
   }

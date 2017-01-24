@@ -51,7 +51,7 @@ public class Ticket {
     this.game = game;
   }
 
-  @OneToOne(mappedBy = "ticket", cascade = CascadeType.ALL)
+  @OneToOne(cascade = CascadeType.ALL)
   public Seat getSeat() {
     return seat;
   }
