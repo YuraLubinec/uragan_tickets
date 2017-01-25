@@ -1,1 +1,1 @@
-angular.module('seatList',[]);
+var seatList = angular.module('seatList',[]);

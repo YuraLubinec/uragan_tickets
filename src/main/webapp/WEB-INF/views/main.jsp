@@ -27,8 +27,11 @@
   <script src="<c:url value = "/resources/dist/angular/angular-resource.js" />"></script>
   <script src="<c:url value = "/resources/dist/angular/angular-route.js" />"></script>
   
-  <script src="<c:url value = "/resources/app.config.js" />"></script>
   <script src="<c:url value = "/resources/app.module.js" />"></script>
+  <script src="<c:url value = "/resources/seat-list/seat-list.module.js" />"></script>
+  <script src="<c:url value = "/resources/app.config.js" />"></script>
+  <script src="<c:url value = "/resources/seat-list/seat-list.component.js" />"></script>
+  <script src="<c:url value = "/resources/seat-list/seat-list.service.js" />"></script>
   
 </head>
 <body>

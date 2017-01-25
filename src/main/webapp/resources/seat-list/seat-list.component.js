@@ -1,5 +1,5 @@
-angular.module('phoneList').component('phoneList', {
-  templateUrl: 'seat-list/seat-list.template/html',
+angular.module('seatList').component('seatList', {
+  templateUrl: 'template/seats/',
   controller: ['SeatListService', function SeatListController(SeatListService){
     var main = this;
     main.seatList = [];
@@ -7,7 +7,7 @@ angular.module('phoneList').component('phoneList', {
     fetchAllUsers();
 
     function fetchAllUsers(){
-        UserService.fetchAllUsers()
+      SeatListService.fetchAllUsers()
             .then(
             function(d) {
               main.seatList = d;

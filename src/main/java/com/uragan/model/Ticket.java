@@ -11,6 +11,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 @Entity
 @Table(name = "ticket")
 public class Ticket {
@@ -18,8 +22,6 @@ public class Ticket {
   private String fullName;
   private Game game;
   private Seat seat;
-
-  // getters and setters
 
   @Id
   @Column(name = "id")
@@ -58,6 +60,22 @@ public class Ticket {
 
   public void setSeat(Seat seat) {
     this.seat = seat;
+  }
+  
+  @Override
+  public int hashCode() {
+    return HashCodeBuilder.reflectionHashCode(this, true);
+
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    return EqualsBuilder.reflectionEquals(this, obj, true);
+  }
+
+  @Override
+  public String toString() {
+    return ToStringBuilder.reflectionToString(this);
   }
 
 }

@@ -1,9 +1,9 @@
 angular.module('ticketApp').config(
-    [ '$locationProvider', 'routeProvider', function config() {
-      $locationProvide.hashPrefix('!');
+    [ '$locationProvider', '$routeProvider', function config($locationProvider,$routeProvider) {
+      $locationProvider.hashPrefix('!');
 
       $routeProvider
-      .when('/main', {
+      .when('/', {
         template : '<seat-list></seat-list>'
       }).when('/game', {
         template : '<game-list></game-list>'
@@ -11,6 +11,6 @@ angular.module('ticketApp').config(
         template : '<subsription-list></subsription-list>'
       }).when('/sector', {
         template : '<sector-list></sector-list>'
-      }).otherwise('/main');
+      }).otherwise('/');
 
     } ]);
