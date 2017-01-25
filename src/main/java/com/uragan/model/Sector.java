@@ -55,7 +55,7 @@ public class Sector {
     this.price = price;
   }
 
-  @OneToMany
+  @OneToMany(fetch=FetchType.EAGER)
   @JoinColumn(name = "sector_id")
   public Set<Seat> getSeats() {
     return seats;
