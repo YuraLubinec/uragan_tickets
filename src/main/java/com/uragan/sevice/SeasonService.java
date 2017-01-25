@@ -1,16 +1,17 @@
-package com.uragan.DAO;
+package com.uragan.sevice;
 
 import java.util.List;
 
 import com.uragan.model.Season;
 
-public interface SeasonDAO {
-  Season findById(int id);
+public interface SeasonService {
 
   List<Season> findAllSeason();
 
   void save(Season season);
 
   void delete(int id);
+
+  Season findById(int id);
 
 }

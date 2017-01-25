@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uragan.model.Seat;
-import com.uragan.sevice.Servicesss;
+import com.uragan.sevice.SeatService;
 
 @RestController
 public class MainRestController {
 
   @Autowired
-  private Servicesss serv;
+  private SeatService serviceSeat;
 
   @GetMapping(value = "/main")
   public ResponseEntity<List<Seat>> listAllSeats() {
-   
-    List<Seat> seats = serv.getAllSeats();
+
+    List<Seat> seats = serviceSeat.findAllSeats();
     if (seats.isEmpty()) {
       return new ResponseEntity<List<Seat>>(HttpStatus.NO_CONTENT);
     }

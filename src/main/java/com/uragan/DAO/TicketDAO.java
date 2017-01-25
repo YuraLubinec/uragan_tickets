@@ -8,4 +8,8 @@ public interface TicketDAO {
 
   List<Ticket> findAllTickets();
 
+  Ticket findById(int id);
+
+  void save(Ticket ticket);
+
 }

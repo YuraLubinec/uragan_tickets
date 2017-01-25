@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -19,8 +17,6 @@ public class Seat {
   private int id;
   private int row;
   private int place;
-
-  // getters and setters
 
   @Id
   @Column(name = "id")
@@ -66,12 +62,5 @@ public class Seat {
   public String toString() {
     return ToStringBuilder.reflectionToString(this);
   }
-
-  
-
-
- 
-  
-  
 
 }

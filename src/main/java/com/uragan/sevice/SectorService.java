@@ -1,15 +1,15 @@
-package com.uragan.DAO;
+package com.uragan.sevice;
 
 import java.util.List;
 
 import com.uragan.model.Sector;
 
-public interface SectorDAO {
-
-  Sector findById(int id);
+public interface SectorService {
 
   List<Sector> findAllSector();
 
   void save(Sector sector);
+
+  Sector findById(int id);
 
 }
