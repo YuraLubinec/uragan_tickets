@@ -2,12 +2,13 @@ package com.uragan.model;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,8 +24,6 @@ public class Season {
   private String years;
   private Set<Game> games;
   private Set<Subscription> subscription;
-
-  // getters and setters
 
   @Id
   @Column(name = "id")
@@ -46,7 +45,8 @@ public class Season {
     this.years = years;
   }
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "season")
+  @OneToMany(fetch = FetchType.EAGER)
+  @JoinColumn(name = "season_id")
   public Set<Game> getGames() {
     return games;
   }
@@ -55,7 +55,8 @@ public class Season {
     this.games = games;
   }
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "season")
+  @OneToMany(fetch = FetchType.EAGER)
+  @JoinColumn(name = "season_id")
   public Set<Subscription> getSubscription() {
     return subscription;
   }
@@ -63,7 +64,7 @@ public class Season {
   public void setSubscription(Set<Subscription> subscription) {
     this.subscription = subscription;
   }
-  
+
   @Override
   public int hashCode() {
     return HashCodeBuilder.reflectionHashCode(this, true);

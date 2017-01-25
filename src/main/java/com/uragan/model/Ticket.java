@@ -1,14 +1,10 @@
 package com.uragan.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -20,8 +16,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class Ticket {
   private int id;
   private String fullName;
-  private Game game;
-  private Seat seat;
+  private int game_id;
+  private int seat_id;
 
   @Id
   @Column(name = "id")
@@ -43,25 +39,24 @@ public class Ticket {
     this.fullName = fullName;
   }
 
-  @ManyToOne
-  @JoinColumn(name = "game_id", referencedColumnName = "id")
-  public Game getGame() {
-    return game;
+  @Column(name = "game_id")
+  public int getGame_id() {
+    return game_id;
   }
 
-  public void setGame(Game game) {
-    this.game = game;
+  public void setGame_id(int game_id) {
+    this.game_id = game_id;
   }
 
-  @OneToOne(cascade = CascadeType.ALL)
-  public Seat getSeat() {
-    return seat;
+  @Column(name = "seat_id")
+  public int getSeat_id() {
+    return seat_id;
   }
 
-  public void setSeat(Seat seat) {
-    this.seat = seat;
+  public void setSeat_id(int seat_id) {
+    this.seat_id = seat_id;
   }
-  
+
   @Override
   public int hashCode() {
     return HashCodeBuilder.reflectionHashCode(this, true);

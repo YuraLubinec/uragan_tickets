@@ -5,9 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -19,10 +16,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class Subscription {
   private int id;
   private String fullName;
-  private Season season;
-  private Seat seat;
-
-  // getters and setters
+  private int season_id;
+  private int seat_id;
 
   @Id
   @Column(name = "id")
@@ -44,25 +39,24 @@ public class Subscription {
     this.fullName = fullName;
   }
 
-  @OneToOne
-  public Seat getSeat() {
-    return seat;
+  @Column(name = "season_id")
+  public int getSeason_id() {
+    return season_id;
   }
 
-  public void setSeat(Seat seat) {
-    this.seat = seat;
+  public void setSeason_id(int season_id) {
+    this.season_id = season_id;
   }
 
-  @ManyToOne
-  @JoinColumn(name = "season_id", referencedColumnName = "id")
-  public Season getSeason() {
-    return season;
+  @Column(name = "seat_id")
+  public int getSeat_id() {
+    return seat_id;
   }
 
-  public void setSeason(Season season) {
-    this.season = season;
+  public void setSeat_id(int seat_id) {
+    this.seat_id = seat_id;
   }
-  
+
   @Override
   public int hashCode() {
     return HashCodeBuilder.reflectionHashCode(this, true);

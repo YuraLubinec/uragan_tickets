@@ -1,15 +1,14 @@
 package com.uragan.model;
 
-import java.util.Set;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,9 +25,8 @@ public class Game {
   private String secondTeam;
   private String date;
   private String time;
-  private Season season;
-  private Set<Ticket> tickets;
-
+  private int season_id;
+  private List<Ticket> tickets;
 
   @Id
   @Column(name = "id")
@@ -51,11 +49,11 @@ public class Game {
   }
 
   @Column(name = "second_team")
-  public String getSecongTeam() {
+  public String getSecondTeam() {
     return secondTeam;
   }
 
-  public void setSecongTeam(String secondTeam) {
+  public void setSecondTeam(String secondTeam) {
     this.secondTeam = secondTeam;
   }
 
@@ -77,25 +75,25 @@ public class Game {
     this.time = time;
   }
 
-  @ManyToOne
-  @JoinColumn(name = "season_id", referencedColumnName = "id")
-  public Season getSeason() {
-    return season;
+  @Column(name = "season_id")
+  public int getSeason_id() {
+    return season_id;
   }
 
-  public void setSeason(Season season) {
-    this.season = season;
+  public void setSeason_id(int season_id) {
+    this.season_id = season_id;
   }
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "game")
-  public Set<Ticket> getTickets() {
+  @OneToMany(fetch = FetchType.EAGER)
+  @JoinColumn(name = "game_id")
+  public List<Ticket> getTickets() {
     return tickets;
   }
 
-  public void setTickets(Set<Ticket> tickets) {
+  public void setTickets(List<Ticket> tickets) {
     this.tickets = tickets;
   }
-  
+
   @Override
   public int hashCode() {
     return HashCodeBuilder.reflectionHashCode(this, true);
