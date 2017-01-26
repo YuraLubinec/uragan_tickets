@@ -4,7 +4,7 @@ angular.module('ticketApp').config(
           $locationProvider.hashPrefix('!');
 
           $routeProvider.when('/', {
-            template : '<seat-list></seat-list>'
+            template : '<main-page></main-page>'
           }).when('/game', {
             template : '<game-list></game-list>'
           }).when('/subscription', {

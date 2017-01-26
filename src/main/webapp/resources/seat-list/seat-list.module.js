@@ -1,1 +1,0 @@
-var seatList = angular.module('seatList',[]);

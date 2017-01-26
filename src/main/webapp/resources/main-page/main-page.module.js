@@ -1,0 +1,1 @@
+var seatList = angular.module('mainPage',[]);

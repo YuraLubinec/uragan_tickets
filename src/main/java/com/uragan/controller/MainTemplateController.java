@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/template")
 public class MainTemplateController {
 
-  @GetMapping("/seats")
+  @GetMapping("/main")
   public String getAllSeat() {
 
-    return "seat-list.template";
+    return "main-page.template";
   }
 
   @GetMapping("/games")

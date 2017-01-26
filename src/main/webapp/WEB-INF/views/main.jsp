@@ -14,6 +14,8 @@
   <link href="<c:url value = "/resources/dist/bootstrap/css/bootstrap.css" />" rel="stylesheet">
   <link href="<c:url value = "/resources/dist/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
   
+  <link href="<c:url value = "/resources/css/main-page.css" />" rel="stylesheet">
+  
   <!-- jQuery -->
   <script src="<c:url value = "/resources/dist/jQuery/jquery.min.js" />"></script>
   <script src="<c:url value = "/resources/dist/jQuery/jquery.js" />"></script>    
@@ -28,19 +30,19 @@
   <script src="<c:url value = "/resources/dist/angular/angular-route.js" />"></script>
   
   <script src="<c:url value = "/resources/app.module.js" />"></script>
-  <script src="<c:url value = "/resources/seat-list/seat-list.module.js" />"></script>
+  <script src="<c:url value = "/resources/main-page/main-page.module.js" />"></script>
   <script src="<c:url value = "/resources/game-list/game-list.module.js" />"></script>
   
   <script src="<c:url value = "/resources/app.config.js" />"></script>
-  <script src="<c:url value = "/resources/seat-list/seat-list.component.js" />"></script>
-  <script src="<c:url value = "/resources/seat-list/seat-list.service.js" />"></script>
+  <script src="<c:url value = "/resources/main-page/main-page.component.js" />"></script>
+  <script src="<c:url value = "/resources/main-page/main-page.service.js" />"></script>
   
   <script src="<c:url value = "/resources/game-list/game-list.component.js" />"></script>
   <script src="<c:url value = "/resources/game-list/game-list.service.js" />"></script>
   
 </head>
 <body>
-	<div class="">
+	<div class="container-fluid">
 		<div ng-view class=""></div>
 	</div>
 </body>

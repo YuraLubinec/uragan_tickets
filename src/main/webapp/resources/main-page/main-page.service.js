@@ -1,4 +1,4 @@
-angular.module('seatList').factory('SeatListService',['$http', '$q', function($http,$q){
+angular.module('mainPage').factory('MainPageService',['$http', '$q', function($http,$q){
   
   var REST_SERVICE_URI = 'http://localhost:8080/uragan/main/';
   
