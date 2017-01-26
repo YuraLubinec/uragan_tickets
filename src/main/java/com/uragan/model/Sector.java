@@ -1,5 +1,6 @@
 package com.uragan.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -22,9 +23,8 @@ public class Sector {
   private int id;
   private String name;
   private int price;
-  private Set<Seat> seats;
+  private Set<Seat> seats =  new HashSet<>();
 
-  // getters and setters
 
   @Id
   @Column(name = "id")
@@ -55,7 +55,7 @@ public class Sector {
     this.price = price;
   }
 
-  @OneToMany(fetch=FetchType.EAGER)
+  @OneToMany
   @JoinColumn(name = "sector_id")
   public Set<Seat> getSeats() {
     return seats;

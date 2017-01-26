@@ -3,12 +3,12 @@ angular.module('seatList').factory('SeatListService',['$http', '$q', function($h
   var REST_SERVICE_URI = 'http://localhost:8080/uragan/main/';
   
   var factory = {
-      fetchAllUsers: fetchAllSeats
+      fetchAllSectors:  fetchAllSectors
   };
 
   return factory;
 
-  function fetchAllSeats() {
+  function fetchAllSectors() {
       var deferred = $q.defer();
       $http.get(REST_SERVICE_URI)
           .then(

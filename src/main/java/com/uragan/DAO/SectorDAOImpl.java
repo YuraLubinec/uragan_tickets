@@ -3,6 +3,7 @@ package com.uragan.DAO;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Repository;
 
@@ -13,15 +14,25 @@ public class SectorDAOImpl extends AbstractDAO<Integer, Sector> implements Secto
 
   @Override
   public Sector findById(int id) {
-    return getById(id);
+    
+    Sector sector = getById(id);
+    if (sector != null){
+      Hibernate.initialize(sector.getSeats());
+    }
+    return sector;
   }
 
   @SuppressWarnings("unchecked")
   @Override
   public List<Sector> findAllSector() {
     Criteria crit = createEntityCriteria();
+    
     crit.addOrder(Order.desc("id"));
-    return (List<Sector>) crit.list();
+    List<Sector> sectors = (List<Sector>) crit.list(); 
+    for(Sector sector : sectors){
+      Hibernate.initialize(sector.getSeats());
+    }
+    return sectors;
   }
 
   @Override

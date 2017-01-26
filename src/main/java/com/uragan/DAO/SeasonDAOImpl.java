@@ -3,6 +3,7 @@ package com.uragan.DAO;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,11 @@ public class SeasonDAOImpl extends AbstractDAO<Integer, Season> implements Seaso
 
   @Override
   public Season findById(int id) {
+    Season season = getById(id);
+    if(season != null){
+      Hibernate.initialize(season.getGames());
+      Hibernate.initialize(season.getSubscription());
+    }
     return getById(id);
   }
 
@@ -22,7 +28,12 @@ public class SeasonDAOImpl extends AbstractDAO<Integer, Season> implements Seaso
   public List<Season> findAllSeason() {
     Criteria crit = createEntityCriteria();
     crit.addOrder(Order.desc("id"));
-    return (List<Season>) crit.list();
+    List<Season> seasons =  (List<Season>) crit.list();
+    for (Season season : seasons){
+      Hibernate.initialize(season.getGames());
+      Hibernate.initialize(season.getSubscription());
+    }
+    return seasons;
   }
 
   @Override
