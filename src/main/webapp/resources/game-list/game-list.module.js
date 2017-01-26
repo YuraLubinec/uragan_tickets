@@ -1,0 +1,1 @@
+var gameList = angular.module('gameList',[]);
