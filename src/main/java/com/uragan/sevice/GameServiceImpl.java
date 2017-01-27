@@ -37,4 +37,18 @@ public class GameServiceImpl implements GameService {
   public Game findById(int id) {
     return dao.findById(id);
   }
+
+  @Transactional
+  @Override
+  public void update(Game game) {
+    Game entity = null;
+
+    entity = dao.findById(game.getId());
+    entity.setFirstTeam(game.getFirstTeam());
+    entity.setSecondTeam(game.getSecondTeam());
+    entity.setDate(game.getDate());
+    entity.setTime(game.getTime());
+    entity.setSeason_id(game.getSeason_id());
+
+  }
 }

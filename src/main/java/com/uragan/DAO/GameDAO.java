@@ -13,5 +13,4 @@ public interface GameDAO {
   void save(Game game);
 
   void delete(int id);
-
 }

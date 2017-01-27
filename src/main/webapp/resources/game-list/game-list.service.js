@@ -1,9 +1,12 @@
 angular.module('gameList').factory('GameListService',['$http', '$q', function($http,$q){
   
-  var REST_SERVICE_URI = 'http://localhost:8080/uragan/main/game';
+  var REST_SERVICE_URI = 'http://localhost:8080/uragan/main/game/';
   
   var factory = {
-      fetchAllGames: fetchAllGames
+      fetchAllGames: fetchAllGames,
+      createGame: createGame,
+      updateGame: updateGame,
+      deleteGame: deleteGame,
   };
 
   return factory;
@@ -16,7 +19,50 @@ angular.module('gameList').factory('GameListService',['$http', '$q', function($h
               deferred.resolve(response.data);
           },
           function(errResponse){
-              console.error('Error while fetching Games');
+
+              deferred.reject(errResponse);
+          }
+      );
+      return deferred.promise;
+  }
+  
+  function createGame(game) {
+      var deferred = $q.defer();
+      $http.post(REST_SERVICE_URI, game)
+          .then(
+          function (response) {
+              deferred.resolve(response.data);
+          },
+          function(errResponse){
+              deferred.reject(errResponse);
+          }
+      );
+      return deferred.promise;
+  }
+  
+  function updateGame(game, id) {
+      var deferred = $q.defer();
+      $http.put(REST_SERVICE_URI+id, game)
+          .then(
+          function (response) {
+              deferred.resolve(response.data);
+          },
+          function(errResponse){
+              deferred.reject(errResponse);
+          }
+      );
+      return deferred.promise;
+  }
+  
+  function deleteGame(id) {
+	  console.log('id to be deleted', id);
+      var deferred = $q.defer();
+      $http.delete(REST_SERVICE_URI+id)
+          .then(
+          function (response) {
+              deferred.resolve(response.data);
+          },
+          function(errResponse){
               deferred.reject(errResponse);
           }
       );

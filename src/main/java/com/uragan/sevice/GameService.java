@@ -13,4 +13,6 @@ public interface GameService {
   void delete(int id);
 
   Game findById(int id);
+
+  void update(Game game);
 }

@@ -16,7 +16,7 @@ public class MainTemplateController {
 
   @GetMapping("/games")
   public String getAllGame() {
-    System.out.println("bla bla".toUpperCase());
+    System.out.println("bla bla games".toUpperCase());
     return "game-list.template";
   }
 
