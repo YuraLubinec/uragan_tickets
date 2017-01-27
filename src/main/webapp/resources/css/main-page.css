@@ -4,6 +4,10 @@ body{
 	background-attachment: fixed;
 }
 
+.navbar-brand {
+	padding: 5px;
+}
+
 main-page tr button {
 	padding: 1px;
 	width: 100%;
@@ -17,8 +21,13 @@ main-page tr button {
 	padding: 15px;
 	margin: 5px;
 	color: #ffffff;
+	background-color: rgba(0,0,0,0.4);
 }
 
 main-page table {
 	margin-bottom: 15px;
+}
+
+.view {
+	margin-top: 50px;
 }

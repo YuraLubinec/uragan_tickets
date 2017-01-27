@@ -6,44 +6,57 @@
 <html ng-app="ticketApp" ng-cloak>
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap -->
-  <link href="<c:url value = "/resources/dist/bootstrap/css/bootstrap.css" />" rel="stylesheet">
-  <link href="<c:url value = "/resources/dist/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
-  
-  <link href="<c:url value = "/resources/css/main-page.css" />" rel="stylesheet">
-  
-  <!-- jQuery -->
-  <script src="<c:url value = "/resources/dist/jQuery/jquery.min.js" />"></script>
-  <script src="<c:url value = "/resources/dist/jQuery/jquery.js" />"></script>    
-   
-  <!-- Bootstrap JS -->
-  <script src="<c:url value = "/resources/dist/bootstrap/js/bootstrap.min.js" />"></script>
-  <script src="<c:url value = "/resources/dist/bootstrap/js/bootstrap.js" />"></script>
-  
-  <!-- Angular Js -->
-  <script src="<c:url value = "/resources/dist/angular/angular.js" />"></script>
-  <script src="<c:url value = "/resources/dist/angular/angular-resource.js" />"></script>
-  <script src="<c:url value = "/resources/dist/angular/angular-route.js" />"></script>
-  
-  <script src="<c:url value = "/resources/app.module.js" />"></script>
-  <script src="<c:url value = "/resources/main-page/main-page.module.js" />"></script>
-  <script src="<c:url value = "/resources/game-list/game-list.module.js" />"></script>
-  
-  <script src="<c:url value = "/resources/app.config.js" />"></script>
-  <script src="<c:url value = "/resources/main-page/main-page.component.js" />"></script>
-  <script src="<c:url value = "/resources/main-page/main-page.service.js" />"></script>
-  
-  <script src="<c:url value = "/resources/game-list/game-list.component.js" />"></script>
-  <script src="<c:url value = "/resources/game-list/game-list.service.js" />"></script>
-  
+<!-- Bootstrap -->
+<link href="<c:url value = "/resources/dist/bootstrap/css/bootstrap.css" />" rel="stylesheet">
+<link href="<c:url value = "/resources/dist/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
+
+<link href="<c:url value = "/resources/css/main-page.css" />" rel="stylesheet">
+
+<!-- jQuery -->
+<script src="<c:url value = "/resources/dist/jQuery/jquery.min.js" />"></script>
+<script src="<c:url value = "/resources/dist/jQuery/jquery.js" />"></script>
+
+<!-- Bootstrap JS -->
+<script src="<c:url value = "/resources/dist/bootstrap/js/bootstrap.min.js" />"></script>
+<script src="<c:url value = "/resources/dist/bootstrap/js/bootstrap.js" />"></script>
+
+<!-- Angular Js -->
+<script src="<c:url value = "/resources/dist/angular/angular.js" />"></script>
+<script src="<c:url value = "/resources/dist/angular/angular-resource.js" />"></script>
+<script src="<c:url value = "/resources/dist/angular/angular-route.js" />"></script>
+
+<script src="<c:url value = "/resources/app.module.js" />"></script>
+<script src="<c:url value = "/resources/main-page/main-page.module.js" />"></script>
+<script src="<c:url value = "/resources/game-list/game-list.module.js" />"></script>
+
+<script src="<c:url value = "/resources/app.config.js" />"></script>
+<script src="<c:url value = "/resources/main-page/main-page.component.js" />"></script>
+<script src="<c:url value = "/resources/main-page/main-page.service.js" />"></script>
+
+<script src="<c:url value = "/resources/game-list/game-list.component.js" />"></script>
+<script src="<c:url value = "/resources/game-list/game-list.service.js" />"></script>
+
 </head>
 <body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+	  <div class="navbar-header">
+        <img alt="no photo" class="navbar-brand" ng-src="resources/images/Uragan_Logo.png" />" >
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#!/">Головна</a></li>
+      <li><a href="#!/game">Ігри</a></li>
+      <li><a href="#!/subscription">Абонементи</a></li>
+      <li><a href="#!/sector">Сектори</a></li>
+    </ul>
+	  </div>
+	</nav>
 	<div class="container-fluid">
-		<div ng-view class=""></div>
+		<div ng-view class="view"></div>
 	</div>
 </body>
 </html>
