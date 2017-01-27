@@ -6,15 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uragan.model.Season;
-import com.uragan.model.Seat;
 import com.uragan.model.Sector;
+import com.uragan.model.Ticket;
 import com.uragan.sevice.SeasonService;
 import com.uragan.sevice.SeatService;
 import com.uragan.sevice.SectorService;
+import com.uragan.sevice.TicketService;
 
 @RestController
 @RequestMapping(value="/main")
@@ -29,6 +32,9 @@ public class MainRestController {
   @Autowired
   private SeasonService serviceSeason;
   
+  @Autowired
+  private TicketService serviceTicket;
+  
   @GetMapping
   public ResponseEntity<List<Sector>> listAllSeats() {
     
@@ -37,6 +43,12 @@ public class MainRestController {
       return new ResponseEntity<List<Sector>>(HttpStatus.NO_CONTENT);
     }
     return new ResponseEntity<List<Sector>>(sectors, HttpStatus.OK);
+  }
+  
+  @PostMapping
+  @ResponseStatus(HttpStatus.CREATED)
+  public void ticketSave(@RequestBody Ticket ticket) {    
+    serviceTicket.save(ticket);
   }
 
 }

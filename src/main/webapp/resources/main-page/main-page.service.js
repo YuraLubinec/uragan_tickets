@@ -3,7 +3,8 @@ angular.module('mainPage').factory('MainPageService',['$http', '$q', function($h
   var REST_SERVICE_URI = 'http://localhost:8080/uragan/main/';
   
   var factory = {
-      fetchAllSectors:  fetchAllSectors
+      fetchAllSectors:  fetchAllSectors,
+      createTicket: createTicket
   };
 
   return factory;
@@ -22,5 +23,20 @@ angular.module('mainPage').factory('MainPageService',['$http', '$q', function($h
       );
       return deferred.promise;
   }
+  
+  function createTicket(ticket) {
+    var deferred = $q.defer();
+    $http.post(REST_SERVICE_URI, ticket)
+        .then(
+        function (response) {
+            deferred.resolve(response.data);
+        },
+        function(errResponse){
+            console.error('Error while saving ticket');
+            deferred.reject(errResponse);
+        }
+    );
+    return deferred.promise;
+}
   
 }]);

@@ -8,17 +8,17 @@
 				<table class="col-lg-12 col-md-12">
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==3">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)"">{{seat.place}}</button>
 						</td>
 					</tr>
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==2">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==1">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 				</table>
@@ -34,17 +34,17 @@
 				<table class="col-lg-12 col-md-12">
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==1">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==2">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==3">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 				</table>
@@ -56,17 +56,17 @@
 				<table class="col-lg-12 col-md-12">
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==1">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==2">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==3">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 				</table>
@@ -78,17 +78,17 @@
 				<table class="col-lg-12 col-md-12">
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==1">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==2">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==3">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 				</table>
@@ -107,39 +107,39 @@
 				<table class="col-lg-12 col-md-12">
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==1">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==2">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==3">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 				</table>
 				<p>{{sector.name}}-{{sector.price}} грн</p>
 			</div>
 		</div>
-		<div ng-repeat="sector in $ctrl.seatList" id="sector.id" class="col-lg-3 col-md-3 col-md-offset-4 col-lg-offset-4" ng-if="sector.id == 9">
+		<div ng-repeat="sector in $ctrl.seatList" id="sector.id" class="col-lg-3 col-md-3 col-md-offset-4 col-lg-offset-4" ng-if="sector.id == 10">
 			<div class="bordered col-md-12 col-lg-12 text-center">
 				<table class="col-lg-12 col-md-12">
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==1">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==2">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 					<tr>
 						<td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==3">
-							<button id="{{seat.id}}">{{seat.place}}</button>
+							<button data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
 						</td>
 					</tr>
 				</table>
@@ -148,3 +148,23 @@
 		</div>
 	</div>
 </div>
+
+<div class="modal modal fade" id="myModal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Сектор-{{$ctrl.sector_name}} Ряд-{{$ctrl.seat_obj.row}} Місце-{{$ctrl.seat_obj.place}}</h4>
+			</div>
+			<div class="modal-body">
+				<form ng-submit="$ctrl.submit()" name="myForm">
+					<input ng-model="$ctrl.ticket.fullName" placeholder="Введіть ПІП замовника" />
+					<button type="submit" class="btn btn-success">Зберегти</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
