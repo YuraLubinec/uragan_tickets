@@ -29,7 +29,7 @@ public class GameRestController {
 
   // -------------Retrieve All Users--------
   public ResponseEntity<List<Game>> listAllSeats() {
-    List<Game> games = gameService.findAllGame();
+    List<Game> games = gameService.findAllGames();
     if (games.isEmpty()) {
       return new ResponseEntity<List<Game>>(HttpStatus.NO_CONTENT);
     }

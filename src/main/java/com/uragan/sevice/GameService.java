@@ -6,7 +6,7 @@ import com.uragan.model.Game;
 
 public interface GameService {
 
-  List<Game> findAllGame();
+  List<Game> findAllGames();
 
   void save(Game game);
 

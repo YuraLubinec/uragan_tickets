@@ -2,6 +2,7 @@ package com.uragan.sevice;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +17,7 @@ public class GameServiceImpl implements GameService {
 
   @Transactional
   @Override
-  public List<Game> findAllGame() {
+  public List<Game> findAllGames() {
     return dao.findAllGames();
   }
 
@@ -35,6 +36,8 @@ public class GameServiceImpl implements GameService {
   @Transactional
   @Override
   public Game findById(int id) {
+    Game game = dao.findById(id);
+    Hibernate.initialize(game.getTickets());
     return dao.findById(id);
   }
 

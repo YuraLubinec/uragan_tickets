@@ -84,7 +84,7 @@ public class Game {
     this.season_id = season_id;
   }
 
-  @OneToMany(fetch = FetchType.EAGER)
+  @OneToMany
   @JoinColumn(name = "game_id")
   public List<Ticket> getTickets() {
     return tickets;
