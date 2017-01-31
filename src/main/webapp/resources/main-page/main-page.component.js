@@ -15,6 +15,7 @@ angular.module('mainPage').component('mainPage', {
     main.submit = submit;
     main.pointAllOccupiedSeats = pointAllOccupiedSeats;
     main.classChecker = classChecker;
+    main.deleteT = deleteT;
 
     fetchAllSectors();
     fetchAllGames();
@@ -55,6 +56,12 @@ angular.module('mainPage').component('mainPage', {
         console.error('Error while saving ticket');
       });
     }
+    
+    function deleteTicket(id) {
+      MainPageService.deleteTicket(id).then(fetchAllGames, function(errResponse) {
+        console.error('Error while saving ticket');
+      });
+    }
 
     function refreshCurrentGameById() {
       for (var i = 0; i < main.gameList.length; i++) {
@@ -79,6 +86,16 @@ angular.module('mainPage').component('mainPage', {
       main.ticket.seat_id = main.seat_obj.id;
       main.ticket.game_id = main.currentGame.id;
       createTicket(main.ticket);
+      angular.element('#myModal').modal('hide');
+    }
+    
+    function deleteT(){
+      main.ticket.game_id = main.currentGame.id;
+      for (var i = 0; i < main.currentGame.tickets.length; i++) {
+        if (main.currentGame.tickets[i].seat_id === main.seat_obj.id){
+          deleteTicket(main.currentGame.tickets[i].id);
+        }
+      }
       angular.element('#myModal').modal('hide');
     }
 

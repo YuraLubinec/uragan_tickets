@@ -6,7 +6,7 @@ angular.module('mainPage').factory('MainPageService', [ '$http', '$q', function(
     fetchAllSectors : fetchAllSectors,
     createTicket : createTicket,
     fetchAllGames : fetchAllGames,
-    getGameById : getGameById
+    deleteTicket: deleteTicket
   };
 
   return factory;
@@ -43,17 +43,17 @@ angular.module('mainPage').factory('MainPageService', [ '$http', '$q', function(
     });
     return deferred.promise;       
   }
+
   
-  function getGameById(id){
+  function deleteTicket(id){
     var deferred = $q.defer();
-    $http.get(REST_SERVICE_URI + "/current/"+id).then(function(response) {
+    $http.delete(REST_SERVICE_URI + "/"+id).then(function(response) {
       deferred.resolve(response.data);
     }, function(errResponse) {
-      console.error('Error while fetching games');
+      console.error('Error while deleting ticket');
       deferred.reject(errResponse);
     });
-    return deferred.promise;
-    
+    return deferred.promise;    
   }
 
 } ]);

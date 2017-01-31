@@ -18,18 +18,28 @@ public class TicketServiceImpl implements TicketService {
   @Transactional
   @Override
   public List<Ticket> findAllTicket() {
+
     return dao.findAllTickets();
   }
 
   @Transactional
   @Override
   public void save(Ticket ticket) {
+
     dao.save(ticket);
   }
 
   @Transactional
   @Override
   public Ticket findById(int id) {
+
     return dao.findById(id);
+  }
+
+  @Transactional
+  @Override
+  public void delete(int id) {
+
+    dao.delete(id);
   }
 }

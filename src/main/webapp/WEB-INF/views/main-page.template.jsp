@@ -171,7 +171,7 @@
 				</div>		
 				<div class="modal-body">
 					<button class="btn btn-success" ng-click="$ctrl.submit()" ng-if="!$ctrl.classChecker()">Зберегти та роздрукувати білет</button>
-					<button class="btn btn-danger" ng-if="$ctrl.classChecker()">Видалити квиток</button>
+					<button class="btn btn-danger" ng-click="$ctrl.deleteT()" ng-if="$ctrl.classChecker()">Видалити квиток</button>
 				</div>
 			</div>
 		</div>

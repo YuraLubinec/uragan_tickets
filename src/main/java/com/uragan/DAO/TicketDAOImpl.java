@@ -28,4 +28,10 @@ public class TicketDAOImpl extends AbstractDAO<Integer, Ticket> implements Ticke
   public void save(Ticket ticket) {
     persist(ticket);
   }
+
+  @Override
+  public void delete(int id) {
+    Ticket ticket = getById(id);
+    delete(ticket);   
+  }
 }

@@ -11,5 +11,7 @@ public interface TicketService {
   void save(Ticket ticket);
 
   Ticket findById(int id);
+  
+  void delete(int id);
 
 }
