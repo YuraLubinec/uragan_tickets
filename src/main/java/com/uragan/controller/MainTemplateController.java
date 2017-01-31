@@ -16,8 +16,13 @@ public class MainTemplateController {
 
   @GetMapping("/games")
   public String getAllGame() {
-    System.out.println("bla bla games".toUpperCase());
     return "game-list.template";
+  }
+
+  @GetMapping("/subscriptions")
+  public String getAllSubscription() {
+    System.out.println("bla bla SUB".toUpperCase());
+    return "subscription-page.template";
   }
 
 }

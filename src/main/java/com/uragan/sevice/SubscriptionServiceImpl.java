@@ -33,8 +33,19 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     return dao.findById(id);
   }
 
+  @Transactional
   @Override
   public void delete(int id) {
     dao.delete(id);
+  }
+
+  @Transactional
+  @Override
+  public void update(Subscription subscription) {
+    Subscription entity = dao.findById(subscription.getId());
+    entity.setFullName(subscription.getFullName());
+    entity.setSeason_id(subscription.getSeason_id());
+    entity.setSeat_id(subscription.getSeason_id());
+
   }
 }

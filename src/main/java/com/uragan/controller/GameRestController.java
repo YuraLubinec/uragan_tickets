@@ -26,8 +26,7 @@ public class GameRestController {
   GameService gameService;
 
   @GetMapping("/main/game")
-
-  // -------------Retrieve All Users--------
+  // -------------Retrieve All Games--------
   public ResponseEntity<List<Game>> listAllSeats() {
     List<Game> games = gameService.findAllGames();
     if (games.isEmpty()) {

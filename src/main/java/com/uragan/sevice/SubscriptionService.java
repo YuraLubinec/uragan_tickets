@@ -14,4 +14,6 @@ public interface SubscriptionService {
 
   Subscription findById(int id);
 
+  void update(Subscription subscription);
+
 }
