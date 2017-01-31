@@ -32,6 +32,7 @@
 <script src="<c:url value = "/resources/app.module.js" />"></script>
 <script src="<c:url value = "/resources/main-page/main-page.module.js" />"></script>
 <script src="<c:url value = "/resources/game-list/game-list.module.js" />"></script>
+<script src="<c:url value = "/resources/subcription-page/subscription-page.module.js" />"></script>
 
 <script src="<c:url value = "/resources/app.config.js" />"></script>
 <script src="<c:url value = "/resources/main-page/main-page.component.js" />"></script>
@@ -39,6 +40,9 @@
 
 <script src="<c:url value = "/resources/game-list/game-list.component.js" />"></script>
 <script src="<c:url value = "/resources/game-list/game-list.service.js" />"></script>
+
+<script src="<c:url value = "/resources/subcription-page/subscription-page.component.js" />"></script>
+<script src="<c:url value = "/resources/subcription-page/subscription-page.service.js" />"></script>
 
 </head>
 <body>

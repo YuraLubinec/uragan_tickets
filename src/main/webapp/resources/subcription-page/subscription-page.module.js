@@ -1,0 +1,1 @@
+var subscriptionPage = angular.module('subscriptionPage',[]);

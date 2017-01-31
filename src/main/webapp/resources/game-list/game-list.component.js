@@ -42,6 +42,7 @@ angular.module('gameList').component('gameList', {
     }
     
     function updateGame(game, id){
+    	console.log("GameListService.updateGame");
     	GameListService.updateGame(game, id)
             .then(
             fetchAllGames,
@@ -69,6 +70,7 @@ angular.module('gameList').component('gameList', {
                 break;
             }
         }
+        console.log("after edit")
     }
     
     function remove(id){

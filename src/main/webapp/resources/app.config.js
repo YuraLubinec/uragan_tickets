@@ -8,7 +8,7 @@ angular.module('ticketApp').config(
           }).when('/game', {
             template : '<game-list></game-list>'
           }).when('/subscription', {
-            template : '<subsription-list></subsription-list>'
+            template : '<subscription-page></subscription-page>'
           }).when('/sector', {
             template : '<sector-list></sector-list>'
           }).otherwise('/');
