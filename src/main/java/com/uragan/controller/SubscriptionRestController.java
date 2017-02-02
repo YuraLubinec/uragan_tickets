@@ -28,11 +28,11 @@ public class SubscriptionRestController {
   @GetMapping("/main/subscription")
   // -------------Retrieve All Subscription--------
   public ResponseEntity<List<Subscription>> listAllSubscriptions() {
-    System.out.println("controller ................. ");
+
     List<Subscription> subs = subService.findAllSubscription();
-    System.out.println(subs);
 
     if (subs.isEmpty()) {
+
       return new ResponseEntity<List<Subscription>>(HttpStatus.NO_CONTENT);
     }
     return new ResponseEntity<List<Subscription>>(subs, HttpStatus.OK);
@@ -41,6 +41,7 @@ public class SubscriptionRestController {
   // ------Retrieve Single User--------------------------
   @GetMapping(value = "/main/subscription/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Subscription> getSubscription(@PathVariable("id") int id) {
+
     Subscription sub = subService.findById(id);
     if (sub == null) {
       return new ResponseEntity<Subscription>(HttpStatus.NOT_FOUND);
@@ -52,10 +53,11 @@ public class SubscriptionRestController {
   @PostMapping("/main/subscription")
   public ResponseEntity<Void> createSubscription(@RequestBody Subscription subscription,
       UriComponentsBuilder ucBuilder) {
-    System.out.println("RestController save :  " + subscription);
+
     subService.save(subscription);
     HttpHeaders headers = new HttpHeaders();
     headers.setLocation(ucBuilder.path("/game/{id}").buildAndExpand(subscription.getId()).toUri());
+
     return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
   }
 
@@ -81,6 +83,7 @@ public class SubscriptionRestController {
     if (currentSubscription == null) {
       return new ResponseEntity<Subscription>(HttpStatus.NOT_FOUND);
     }
+
     subService.update(subscription);
     return new ResponseEntity<Subscription>(subscription, HttpStatus.OK);
   }

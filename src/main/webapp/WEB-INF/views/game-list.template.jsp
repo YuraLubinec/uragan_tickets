@@ -66,6 +66,14 @@
   <div>
     <div class=""><span class="lead">Список ігор</span></div>
 
+    <table>
+      <tr >
+      <td></td>
+      </tr>
+    </table>
+    
+    
+    
     <table class="table">
       <thead>
         <tr>

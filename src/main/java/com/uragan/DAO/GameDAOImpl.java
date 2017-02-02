@@ -16,21 +16,21 @@ public class GameDAOImpl extends AbstractDAO<Integer, Game> implements GameDAO {
   @SuppressWarnings("unchecked")
   @Override
   public List<Game> findAllGames() {
-   
+
     Criteria crit = createEntityCriteria();
     crit.addOrder(Order.desc("id"));
     List<Game> gameList = (List<Game>) crit.list();
-    for (Game game : gameList){
+    for (Game game : gameList) {
       Hibernate.initialize(game.getTickets());
     }
     return gameList;
   }
 
   @Override
-  public Game findById(int id) {
-    
+  public Game findById(int id) {   
+
     Game game = getById(id);
-    if(game != null){
+    if (game != null) {
       Hibernate.initialize(game.getTickets());
     }
     return game;
@@ -38,13 +38,13 @@ public class GameDAOImpl extends AbstractDAO<Integer, Game> implements GameDAO {
 
   @Override
   public void save(Game game) {
-    
+
     persist(game);
   }
 
   @Override
   public void delete(int id) {
-    
+
     Criteria crit = createEntityCriteria();
     crit.add(Restrictions.eq("id", id));
     Game game = (Game) crit.uniqueResult();
