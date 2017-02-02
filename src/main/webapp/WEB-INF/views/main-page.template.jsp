@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="row">
-	<div class="col-lg-4 col-md-4 col-lg-offset-4 col-lg-offset-4">
+<div class="row" ng-show="$ctrl.gameList != []">
+	<div class="col-lg-4 col-md-4 col-lg-offset-4 col-lg-offset-4  add-padding-top">
 		<select id="selector" ng-model="$ctrl.currentGame" ng-options="game.date+' '+game.firstTeam+' проти '+game.secondTeam for game in $ctrl.gameList"
-			class="form-control" ng-change="$ctrl.pointAllOccupiedSeats()" ng-cloak>
+			class="form-control" ng-change="$ctrl.pointAllOccupiedSeats()">
 			<option value="" disabled>Оберіть гру</option>
 		</select>
 	</div>

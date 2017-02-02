@@ -56,7 +56,7 @@ angular.module('mainPage').component('mainPage', {
         console.error('Error while saving ticket');
       });
     }
-    
+
     function deleteTicket(id) {
       MainPageService.deleteTicket(id).then(fetchAllGames, function(errResponse) {
         console.error('Error while saving ticket');
@@ -75,11 +75,11 @@ angular.module('mainPage').component('mainPage', {
         game_id : null
       };
     }
-    
-    function classChecker(){
-      if(main.seat_obj != null){
+
+    function classChecker() {
+      if (main.seat_obj != null) {
         return angular.element('#' + main.seat_obj.id).hasClass('buttonStyle');
-      }      
+      }
     }
 
     function submit() {
@@ -88,11 +88,11 @@ angular.module('mainPage').component('mainPage', {
       createTicket(main.ticket);
       angular.element('#myModal').modal('hide');
     }
-    
-    function deleteT(){
+
+    function deleteT() {
       main.ticket.game_id = main.currentGame.id;
       for (var i = 0; i < main.currentGame.tickets.length; i++) {
-        if (main.currentGame.tickets[i].seat_id === main.seat_obj.id){
+        if (main.currentGame.tickets[i].seat_id === main.seat_obj.id) {
           deleteTicket(main.currentGame.tickets[i].id);
         }
       }

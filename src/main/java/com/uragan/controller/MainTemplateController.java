@@ -13,6 +13,12 @@ public class MainTemplateController {
 
     return "main-page.template";
   }
+  
+  @GetMapping("/login")
+  public String getLoginPage() {
+
+    return "login-page.template";
+  }
 
   @GetMapping("/games")
   public String getAllGame() {

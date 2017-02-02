@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html">
-<html ng-app="ticketApp" ng-cloak>
+<html ng-app="ticketApp">
 <head>
 
 <meta charset="utf-8">
@@ -29,11 +29,16 @@
 <script src="<c:url value = "/resources/dist/angular/angular-route.js" />"></script>
 
 <script src="<c:url value = "/resources/app.module.js" />"></script>
+<script src="<c:url value = "/resources/login-page/login-page.module.js" />"></script>
 <script src="<c:url value = "/resources/main-page/main-page.module.js" />"></script>
 <script src="<c:url value = "/resources/game-list/game-list.module.js" />"></script>
 <script src="<c:url value = "/resources/subcription-page/subscription-page.module.js" />"></script>
 
 <script src="<c:url value = "/resources/app.config.js" />"></script>
+
+<script src="<c:url value = "/resources/login-page/login-page.component.js" />"></script>
+<script src="<c:url value = "/resources/login-page/login-page.service.js" />"></script>
+
 <script src="<c:url value = "/resources/main-page/main-page.component.js" />"></script>
 <script src="<c:url value = "/resources/main-page/main-page.service.js" />"></script>
 
@@ -56,9 +61,13 @@
       <li><a href="#!/subscription">Абонементи</a></li>
       <li><a href="#!/sector">Сектори</a></li>
     </ul>
+    
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#!/login">Увійти</a></li>
+    </ul>
 	  </div>
 	</nav>
-	<div class="container-fluid">
+	<div class="container-fluid ng-cloak" ng-cloak>
 		<div ng-view class="view"></div>
 	</div>
 </body>
