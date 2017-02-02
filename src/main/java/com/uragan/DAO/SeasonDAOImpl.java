@@ -19,6 +19,9 @@ public class SeasonDAOImpl extends AbstractDAO<Integer, Season> implements Seaso
     Season season = getById(id);
     if (season != null) {
       Hibernate.initialize(season.getGames());
+      for (Game games : season.getGames()) {
+        Hibernate.initialize(games.getTickets());
+      }
       Hibernate.initialize(season.getSubscription());
     }
     return getById(id);

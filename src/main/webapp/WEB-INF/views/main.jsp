@@ -14,7 +14,7 @@
 <link href="<c:url value = "/resources/dist/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
 
 <link href="<c:url value = "/resources/css/main-page.css" />" rel="stylesheet">
-
+<link href="<c:url value = "/resources/css/game-list.css" />" rel="stylesheet">
 <!-- jQuery -->
 <script src="<c:url value = "/resources/dist/jQuery/jquery.min.js" />"></script>
 <script src="<c:url value = "/resources/dist/jQuery/jquery.js" />"></script>

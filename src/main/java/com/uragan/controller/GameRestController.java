@@ -61,7 +61,7 @@ public class GameRestController {
     return new ResponseEntity<List<Season>>(seasons, HttpStatus.OK);
   }
 
-  // ------Retrieve Single User--------------------------
+  // ------Retrieve Single Game--------------------------
   @GetMapping(value = "/main/game/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Game> getGame(@PathVariable("id") int id) {
 
@@ -75,7 +75,7 @@ public class GameRestController {
     return new ResponseEntity<Game>(game, HttpStatus.OK);
   }
 
-  // --Create a User-----------
+  // --Create a Game-----------
   @PostMapping("/main/game")
   public ResponseEntity<Void> createGame(@RequestBody Game game, UriComponentsBuilder ucBuilder) {
 
@@ -89,6 +89,7 @@ public class GameRestController {
   @DeleteMapping("/main/game/{id}")
   public ResponseEntity<Game> deleteUser(@PathVariable("id") int id) {
 
+    System.out.println("controller delete ......................");
     Game game = gameService.findById(id);
     if (game == null) {
 
@@ -98,7 +99,7 @@ public class GameRestController {
     return new ResponseEntity<Game>(HttpStatus.NO_CONTENT);
   }
 
-  // ------------------- Update a User----------------------------------
+  // ------------------- Update a Game----------------------------------
 
   @PutMapping("/main/game/{id}")
   public ResponseEntity<Game> updateGame(@PathVariable("id") int id, @RequestBody Game game) {

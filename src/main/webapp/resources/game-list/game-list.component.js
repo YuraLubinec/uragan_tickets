@@ -2,16 +2,18 @@ angular.module('gameList').component('gameList', {
   templateUrl: 'template/games/',
   controller: ['$scope', 'GameListService', function GameListController($scope, GameListService) {
     var main = this;
+    
     main.game = {
       id: null,
       firstTeam: '',
       secondTeam: '',
       date: '',
       time: '',
-      season_id: ''
-    }
-    main.gameList = [];
+      season_id : '',
+    }   
+    main.currentSeason = null;
     
+    main.gameList = [];  
     main.seasonList = [];
 
     main.submit = submit;
@@ -50,8 +52,15 @@ angular.module('gameList').component('gameList', {
           function(errResponse) {}
         );
     }
+    
+    function appropriationSeason_Id(){
+      if(main.currentSeason != null){
+        main.game.season_id = main.currentSeason.id;
+      }
+    }
 
     function deleteGame(id) {
+      console.log("delete game : " + id);
       GameListService.deleteGame(id)
         .then(
           fetchAllGames,
@@ -69,10 +78,12 @@ angular.module('gameList').component('gameList', {
     }
 
     function submit() {
+      appropriationSeason_Id();
       if (main.game.id === null) {
-        createGame(main.game);
+        createGame(main.game)
       } else {
         updateGame(main.game, main.game.id);
+        
       }
       reset();
     }
