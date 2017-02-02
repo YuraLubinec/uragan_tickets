@@ -168,7 +168,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title">Сектор-{{$ctrl.sector_name}} Ряд-{{$ctrl.seat_obj.row}} Місце-{{$ctrl.seat_obj.place}}</h4>
-				</div>		
+				</div>
 				<div class="modal-body">
 					<button class="btn btn-success" ng-click="$ctrl.submit()" ng-if="!$ctrl.classChecker()">Зберегти та роздрукувати білет</button>
 					<button class="btn btn-danger" ng-click="$ctrl.deleteT()" ng-if="$ctrl.classChecker()">Видалити квиток</button>

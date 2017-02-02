@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.uragan.model.Game;
+import com.uragan.model.Season;
 import com.uragan.sevice.GameService;
+import com.uragan.sevice.SeasonService;
 
 @RestController
 public class GameRestController {
@@ -25,22 +27,48 @@ public class GameRestController {
   @Autowired
   GameService gameService;
 
-  @GetMapping("/main/game")
+  @Autowired
+  SeasonService seasonService;
+
   // -------------Retrieve All Games--------
+  @GetMapping("/main/game")
   public ResponseEntity<List<Game>> listAllSeats() {
     List<Game> games = gameService.findAllGames();
     if (games.isEmpty()) {
+
       return new ResponseEntity<List<Game>>(HttpStatus.NO_CONTENT);
     }
     return new ResponseEntity<List<Game>>(games, HttpStatus.OK);
   }
 
+  // -------------Retrieve All Seasons--------
+  @GetMapping("/main/game/season")
+  public ResponseEntity<List<Season>> listAllSeasons() {
+    System.out.println("controller season ...");
+    List<Season> seasons = seasonService.findAllSeason();
+    System.out.println("SEASON...........................");
+    for (Season season : seasons) {
+      System.out.println(season.getYears());
+      System.out.println(season.getSubscription());
+      System.out.println(season.getGames());
+
+    }
+
+    if (seasons.isEmpty()) {
+
+      return new ResponseEntity<List<Season>>(HttpStatus.NO_CONTENT);
+    }
+    return new ResponseEntity<List<Season>>(seasons, HttpStatus.OK);
+  }
+
   // ------Retrieve Single User--------------------------
   @GetMapping(value = "/main/game/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Game> getGame(@PathVariable("id") int id) {
+
     System.out.println("Fetching Game with id " + id);
     Game game = gameService.findById(id);
     if (game == null) {
+
       System.out.println("User with id " + id + " not found");
       return new ResponseEntity<Game>(HttpStatus.NOT_FOUND);
     }
@@ -50,6 +78,7 @@ public class GameRestController {
   // --Create a User-----------
   @PostMapping("/main/game")
   public ResponseEntity<Void> createGame(@RequestBody Game game, UriComponentsBuilder ucBuilder) {
+
     gameService.save(game);
     HttpHeaders headers = new HttpHeaders();
     headers.setLocation(ucBuilder.path("/game/{id}").buildAndExpand(game.getId()).toUri());
@@ -59,10 +88,10 @@ public class GameRestController {
   // --Delete a User-----------
   @DeleteMapping("/main/game/{id}")
   public ResponseEntity<Game> deleteUser(@PathVariable("id") int id) {
-    System.out.println("Fetching & Deleting Game with id " + id);
+
     Game game = gameService.findById(id);
     if (game == null) {
-      System.out.println("Unable to delete. User with id " + id + " not found");
+
       return new ResponseEntity<Game>(HttpStatus.NOT_FOUND);
     }
     gameService.delete(id);
@@ -73,12 +102,10 @@ public class GameRestController {
 
   @PutMapping("/main/game/{id}")
   public ResponseEntity<Game> updateGame(@PathVariable("id") int id, @RequestBody Game game) {
-    System.out.println("Updating Game " + id);
 
     Game currentGame = gameService.findById(id);
 
     if (currentGame == null) {
-      System.out.println("User with id " + id + " not found");
       return new ResponseEntity<Game>(HttpStatus.NOT_FOUND);
     }
     gameService.update(game);

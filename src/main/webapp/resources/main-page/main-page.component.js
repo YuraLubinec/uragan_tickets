@@ -17,8 +17,9 @@ angular.module('mainPage').component('mainPage', {
     main.classChecker = classChecker;
     main.deleteT = deleteT;
 
-    fetchAllSectors();
     fetchAllGames();
+    fetchAllSectors();
+    
 
     function fetchAllSectors() {
       MainPageService.fetchAllSectors().then(function(response) {
