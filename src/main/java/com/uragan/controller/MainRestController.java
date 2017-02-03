@@ -18,8 +18,6 @@ import com.uragan.model.Game;
 import com.uragan.model.Sector;
 import com.uragan.model.Ticket;
 import com.uragan.sevice.GameService;
-import com.uragan.sevice.SeasonService;
-import com.uragan.sevice.SeatService;
 import com.uragan.sevice.SectorService;
 import com.uragan.sevice.TicketService;
 
@@ -28,14 +26,8 @@ import com.uragan.sevice.TicketService;
 public class MainRestController {
 
   @Autowired
-  private SeatService serviceSeat;
-  
-  @Autowired
   private SectorService serviceSector;
-  
-  @Autowired
-  private SeasonService serviceSeason;
-  
+    
   @Autowired
   private TicketService serviceTicket;
   
@@ -75,5 +67,5 @@ public class MainRestController {
    
     serviceTicket.delete(id);
   }
-
+  
 }

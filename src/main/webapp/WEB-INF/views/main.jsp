@@ -14,13 +14,40 @@
 <link href="<c:url value = "/resources/dist/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
 
 <link href="<c:url value = "/resources/css/main-page.css" />" rel="stylesheet">
-<link href="<c:url value = "/resources/css/game-list.css" />" rel="stylesheet">
+
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<img alt="no photo" class="navbar-brand" ng-src="resources/images/Uragan_Logo.png" />" >
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#!/">Головна</a></li>
+				<li><a href="#!/game">Ігри</a></li>
+				<li><a href="#!/subscription">Абонементи</a></li>
+				<li><a href="#!/sector">Сектори</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+				  <a href=<c:url value="/logout" /> class="login-logout"> 
+				    <span class="glyphicon glyphicon-log-out login-logout" aria-hidden="true"></span> Вийти
+				  </a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container-fluid ng-cloak" ng-cloak>
+		<div ng-view class="view"></div>
+	</div>
+</body>
+
 <!-- jQuery -->
 <script src="<c:url value = "/resources/dist/jQuery/jquery.min.js" />"></script>
 <script src="<c:url value = "/resources/dist/jQuery/jquery.js" />"></script>
 
 <!-- Bootstrap JS -->
-<%-- <script src="<c:url value = "/resources/dist/bootstrap/js/bootstrap.min.js" />"></script> --%>
 <script src="<c:url value = "/resources/dist/bootstrap/js/bootstrap.js" />"></script>
 
 <!-- Angular Js -->
@@ -48,27 +75,5 @@
 <script src="<c:url value = "/resources/subcription-page/subscription-page.component.js" />"></script>
 <script src="<c:url value = "/resources/subcription-page/subscription-page.service.js" />"></script>
 
-</head>
-<body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-	  <div class="container-fluid">
-	  <div class="navbar-header">
-        <img alt="no photo" class="navbar-brand" ng-src="resources/images/Uragan_Logo.png" />" >
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#!/">Головна</a></li>
-      <li><a href="#!/game">Ігри</a></li>
-      <li><a href="#!/subscription">Абонементи</a></li>
-      <li><a href="#!/sector">Сектори</a></li>
-    </ul>
-    
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#!/login">Увійти</a></li>
-    </ul>
-	  </div>
-	</nav>
-	<div class="container-fluid ng-cloak" ng-cloak>
-		<div ng-view class="view"></div>
-	</div>
-</body>
 </html>
+

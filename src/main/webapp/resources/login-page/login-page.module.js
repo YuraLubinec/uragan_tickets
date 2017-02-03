@@ -1,1 +1,1 @@
-angular.module('loginPage',[]);
+//angular.module('loginPage',[]);
