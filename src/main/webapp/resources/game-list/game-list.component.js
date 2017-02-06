@@ -11,8 +11,9 @@ angular.module('gameList').component('gameList', {
       time: '',
       season_id : '',
     }   
+    main.currentSelectSeason = null;
     main.currentSeason = null;
-    
+    main.seasonName ='';
     main.gameList = [];  
     main.seasonList = [];
 
@@ -20,11 +21,18 @@ angular.module('gameList').component('gameList', {
     main.edit = edit;
     main.remove = remove;
     main.reset = reset;
-    
-    
-    fetchAllGames();
+
     fetchAllSeasons();
-    
+   
+    function fetchAllGamesBySeason(id) {
+      GameListService.fetchAllGamesBySeason(id)
+        .then(
+          function(d) {
+            main.gameList = d;
+          },
+          function(errResponse) {}
+        );
+    }
     
     function fetchAllSeasons() {
       GameListService.fetchAllSeasons()
@@ -35,35 +43,25 @@ angular.module('gameList').component('gameList', {
           function(errResponse) {}
         );
     }
-    function fetchAllGames() {
-      GameListService.fetchAllGames()
-        .then(
-          function(d) {
-            main.gameList = d;
-          },
-          function(errResponse) {}
-        );
-    }
 
     function createGame(game) {
       GameListService.createGame(game)
         .then(
-          fetchAllGames,
+          getGamesAfterChange,
           function(errResponse) {}
         );
     }
     
     function appropriationSeason_Id(){
-      if(main.currentSeason != null){
-        main.game.season_id = main.currentSeason.id;
+      if(main.currentSelectSeason != null){
+        main.game.season_id = main.currentSelectSeason.id;
       }
     }
 
     function deleteGame(id) {
-      console.log("delete game : " + id);
       GameListService.deleteGame(id)
         .then(
-          fetchAllGames,
+          getGamesAfterChange,
           function(errResponse) {
           }
         );
@@ -72,7 +70,7 @@ angular.module('gameList').component('gameList', {
     function updateGame(game, id) {
       GameListService.updateGame(game, id)
         .then(
-          fetchAllGames,
+           getGamesAfterChange,
           function(errResponse) {}
         );
     }
@@ -94,6 +92,18 @@ angular.module('gameList').component('gameList', {
           main.game = angular.copy(main.gameList[i]);
           break;
         }
+      }
+    }
+    
+    $scope.getGamesOfSeason = function(){
+      if(main.currentSeason != null){
+        fetchAllGamesBySeason(main.currentSeason.id);
+      }
+    }
+    
+    function getGamesAfterChange(){
+      if(main.currentSeason != null){
+        fetchAllGamesBySeason(main.currentSeason.id);
       }
     }
 

@@ -15,4 +15,6 @@ public interface GameService {
   Game findById(int id);
 
   void update(Game game);
+
+  List<Game> findGamesBySeasonId(int idSeason);
 }

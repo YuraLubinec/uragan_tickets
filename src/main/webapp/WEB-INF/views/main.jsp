@@ -14,6 +14,7 @@
 <link href="<c:url value = "/resources/dist/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
 
 <link href="<c:url value = "/resources/css/main-page.css" />" rel="stylesheet">
+<link href="<c:url value = "/resources/css/game-list.css" />" rel="stylesheet">
 
 </head>
 <body>

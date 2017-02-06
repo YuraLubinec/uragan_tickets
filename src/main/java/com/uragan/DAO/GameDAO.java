@@ -10,6 +10,8 @@ public interface GameDAO {
 
   Game findById(int id);
 
+  List<Game> findGamesBySeasonId(int seasonId);
+
   void save(Game game);
 
   void delete(int id);

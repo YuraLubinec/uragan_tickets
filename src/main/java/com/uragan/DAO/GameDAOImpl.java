@@ -27,7 +27,7 @@ public class GameDAOImpl extends AbstractDAO<Integer, Game> implements GameDAO {
   }
 
   @Override
-  public Game findById(int id) {   
+  public Game findById(int id) {
 
     Game game = getById(id);
     if (game != null) {
@@ -49,6 +49,18 @@ public class GameDAOImpl extends AbstractDAO<Integer, Game> implements GameDAO {
     crit.add(Restrictions.eq("id", id));
     Game game = (Game) crit.uniqueResult();
     delete(game);
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public List<Game> findGamesBySeasonId(int seasonId) {
+    Criteria crit = createEntityCriteria();
+    crit.add(Restrictions.eq("season_id", seasonId));
+    List<Game> games = (List<Game>) crit.list();
+    for (Game game : games) {
+      Hibernate.initialize(game.getTickets());
+    }
+    return games;
   }
 
 }

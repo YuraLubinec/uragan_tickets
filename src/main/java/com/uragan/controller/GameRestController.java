@@ -32,7 +32,7 @@ public class GameRestController {
 
   // -------------Retrieve All Games--------
   @GetMapping("/main/game")
-  public ResponseEntity<List<Game>> listAllSeats() {
+  public ResponseEntity<List<Game>> listAllGames() {
     List<Game> games = gameService.findAllGames();
     if (games.isEmpty()) {
 
@@ -44,15 +44,7 @@ public class GameRestController {
   // -------------Retrieve All Seasons--------
   @GetMapping("/main/game/season")
   public ResponseEntity<List<Season>> listAllSeasons() {
-    System.out.println("controller season ...");
     List<Season> seasons = seasonService.findAllSeason();
-    System.out.println("SEASON...........................");
-    for (Season season : seasons) {
-      System.out.println(season.getYears());
-      System.out.println(season.getSubscription());
-      System.out.println(season.getGames());
-
-    }
 
     if (seasons.isEmpty()) {
 
@@ -61,15 +53,24 @@ public class GameRestController {
     return new ResponseEntity<List<Season>>(seasons, HttpStatus.OK);
   }
 
+  // -------------Retrieve All Games by id of season--------
+  @GetMapping("/main/game/seasonGames/{id}")
+  public ResponseEntity<List<Game>> listAllGamesBySeasonId(@PathVariable("id") int id) {
+
+    List<Game> games = gameService.findGamesBySeasonId(id);
+
+    if (games.isEmpty()) {
+
+      return new ResponseEntity<List<Game>>(HttpStatus.NO_CONTENT);
+    }
+    return new ResponseEntity<List<Game>>(games, HttpStatus.OK);
+  }
+
   // ------Retrieve Single Game--------------------------
   @GetMapping(value = "/main/game/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Game> getGame(@PathVariable("id") int id) {
-
-    System.out.println("Fetching Game with id " + id);
     Game game = gameService.findById(id);
     if (game == null) {
-
-      System.out.println("User with id " + id + " not found");
       return new ResponseEntity<Game>(HttpStatus.NOT_FOUND);
     }
     return new ResponseEntity<Game>(game, HttpStatus.OK);
@@ -89,7 +90,6 @@ public class GameRestController {
   @DeleteMapping("/main/game/{id}")
   public ResponseEntity<Game> deleteUser(@PathVariable("id") int id) {
 
-    System.out.println("controller delete ......................");
     Game game = gameService.findById(id);
     if (game == null) {
 

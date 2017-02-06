@@ -54,4 +54,10 @@ public class GameServiceImpl implements GameService {
     entity.setSeason_id(game.getSeason_id());
 
   }
+
+  @Transactional
+  @Override
+  public List<Game> findGamesBySeasonId(int idSeason) {
+    return dao.findGamesBySeasonId(idSeason);
+  }
 }

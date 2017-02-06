@@ -3,9 +3,8 @@ angular.module('gameList').factory('GameListService',['$http', '$q', function($h
   var REST_SERVICE_URI = 'http://localhost:8080/uragan/main/game/';
   
   var factory = {
- 
-      fetchAllGames: fetchAllGames,
       fetchAllSeasons: fetchAllSeasons,
+      fetchAllGamesBySeason : fetchAllGamesBySeason,
       createGame: createGame,
       updateGame: updateGame,
       deleteGame: deleteGame,
@@ -13,9 +12,25 @@ angular.module('gameList').factory('GameListService',['$http', '$q', function($h
 
   return factory;
   
+  
+  function fetchAllGamesBySeason(id) {
+    var deferred = $q.defer();
+    $http.get(REST_SERVICE_URI+"seasonGames/"+id)
+        .then(
+        function (response) {
+          deferred.resolve(response.data);
+        },
+        function(errResponse){
+
+            deferred.reject(errResponse);
+        }
+    );
+    return deferred.promise;
+}
+  
   function fetchAllSeasons() {
     var deferred = $q.defer();
-    $http.get(REST_SERVICE_URI+"/season")
+    $http.get(REST_SERVICE_URI+"season")
         .then(
         function (response) {
             deferred.resolve(response.data);
