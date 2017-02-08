@@ -41,4 +41,12 @@ public class SubscriptionDAOImpl extends AbstractDAO<Integer, Subscription> impl
 
   }
 
+  @SuppressWarnings("unchecked")
+  @Override
+  public List<Subscription> findAllBySeasonId(int id) {
+    Criteria crit = createEntityCriteria();
+    crit.add(Restrictions.eq("season_id", id));
+    return (List<Subscription>) crit.list();
+  }
+
 }

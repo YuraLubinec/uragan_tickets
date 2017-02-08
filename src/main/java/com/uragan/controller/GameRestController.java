@@ -3,7 +3,6 @@ package com.uragan.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +12,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import com.uragan.model.Game;
 import com.uragan.model.Season;
+import com.uragan.model.Subscription;
 import com.uragan.sevice.GameService;
 import com.uragan.sevice.SeasonService;
+import com.uragan.sevice.SubscriptionService;
+import com.uragan.sevice.TicketService;
 
 @RestController
 public class GameRestController {
@@ -29,6 +31,12 @@ public class GameRestController {
 
   @Autowired
   SeasonService seasonService;
+
+  @Autowired
+  SubscriptionService subscriptionService;
+
+  @Autowired
+  TicketService ticketService;
 
   // -------------Retrieve All Games--------
   @GetMapping("/main/game")
@@ -66,6 +74,17 @@ public class GameRestController {
     return new ResponseEntity<List<Game>>(games, HttpStatus.OK);
   }
 
+  // --Create a Game and tickets for all subscriptions by season ID-----------
+  @PostMapping("/main/game")
+  @ResponseStatus(HttpStatus.CREATED)
+  public void createGame(@RequestBody Game game) {
+    gameService.save(game);
+    Game lastGame = gameService.getLastGame();
+    List<Subscription> subscriptions = subscriptionService.findAllBySeasonId(lastGame.getSeason_id());
+    ticketService.saveTicketsForSubscriptions(lastGame.getId(), subscriptions);
+
+  }
+
   // ------Retrieve Single Game--------------------------
   @GetMapping(value = "/main/game/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Game> getGame(@PathVariable("id") int id) {
@@ -74,16 +93,6 @@ public class GameRestController {
       return new ResponseEntity<Game>(HttpStatus.NOT_FOUND);
     }
     return new ResponseEntity<Game>(game, HttpStatus.OK);
-  }
-
-  // --Create a Game-----------
-  @PostMapping("/main/game")
-  public ResponseEntity<Void> createGame(@RequestBody Game game, UriComponentsBuilder ucBuilder) {
-
-    gameService.save(game);
-    HttpHeaders headers = new HttpHeaders();
-    headers.setLocation(ucBuilder.path("/game/{id}").buildAndExpand(game.getId()).toUri());
-    return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
   }
 
   // --Delete a User-----------

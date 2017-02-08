@@ -32,6 +32,6 @@ public class TicketDAOImpl extends AbstractDAO<Integer, Ticket> implements Ticke
   @Override
   public void delete(int id) {
     Ticket ticket = getById(id);
-    delete(ticket);   
+    delete(ticket);
   }
 }

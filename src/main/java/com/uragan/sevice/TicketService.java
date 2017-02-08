@@ -2,6 +2,7 @@ package com.uragan.sevice;
 
 import java.util.List;
 
+import com.uragan.model.Subscription;
 import com.uragan.model.Ticket;
 
 public interface TicketService {
@@ -11,7 +12,9 @@ public interface TicketService {
   void save(Ticket ticket);
 
   Ticket findById(int id);
-  
+
   void delete(int id);
+
+  void saveTicketsForSubscriptions(int idGame, List<Subscription> list);
 
 }

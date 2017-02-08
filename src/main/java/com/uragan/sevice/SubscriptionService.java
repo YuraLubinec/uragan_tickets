@@ -16,4 +16,6 @@ public interface SubscriptionService {
 
   void update(Subscription subscription);
 
+  List<Subscription> findAllBySeasonId(int id);
+
 }

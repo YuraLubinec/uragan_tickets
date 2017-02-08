@@ -60,4 +60,10 @@ public class GameServiceImpl implements GameService {
   public List<Game> findGamesBySeasonId(int idSeason) {
     return dao.findGamesBySeasonId(idSeason);
   }
+
+  @Transactional
+  @Override
+  public Game getLastGame() {
+    return dao.getLastGame();
+  }
 }

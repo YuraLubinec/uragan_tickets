@@ -10,6 +10,8 @@ public interface SubscriptionDAO {
 
   List<Subscription> findAll();
 
+  List<Subscription> findAllBySeasonId(int id);
+
   void save(Subscription subscription);
 
   void delete(int id);

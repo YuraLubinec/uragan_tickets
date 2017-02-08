@@ -48,4 +48,10 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     entity.setSeat_id(subscription.getSeason_id());
 
   }
+
+  @Transactional
+  @Override
+  public List<Subscription> findAllBySeasonId(int id) {
+    return dao.findAllBySeasonId(id);
+  }
 }

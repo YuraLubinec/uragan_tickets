@@ -17,4 +17,6 @@ public interface GameService {
   void update(Game game);
 
   List<Game> findGamesBySeasonId(int idSeason);
+
+  Game getLastGame();
 }

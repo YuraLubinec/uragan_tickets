@@ -63,4 +63,13 @@ public class GameDAOImpl extends AbstractDAO<Integer, Game> implements GameDAO {
     return games;
   }
 
+  @Override
+  public Game getLastGame() {
+    Criteria crit = createEntityCriteria();
+    crit.addOrder(Order.desc("id"));
+    crit.setMaxResults(1);
+    Game game = (Game) crit.uniqueResult();
+    return game;
+  }
+
 }
