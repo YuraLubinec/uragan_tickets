@@ -9,13 +9,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Bootstrap -->
-<link href="<c:url value = "/resources/dist/bootstrap/css/bootstrap.css" />" rel="stylesheet">
-<link href="<c:url value = "/resources/dist/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
-
-<link href="<c:url value = "/resources/css/main-page.css" />" rel="stylesheet">
-<link href="<c:url value = "/resources/css/game-list.css" />" rel="stylesheet">
-
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -43,6 +36,14 @@
 		<div ng-view class="view"></div>
 	</div>
 </body>
+
+<!-- Bootstrap -->
+<link href="<c:url value = "/resources/dist/bootstrap/css/bootstrap.css" />" rel="stylesheet">
+<link href="<c:url value = "/resources/dist/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
+
+<!-- Page CSS -->
+<link href="<c:url value = "/resources/css/main-page.css" />" rel="stylesheet">
+<link href="<c:url value = "/resources/css/game-list.css" />" rel="stylesheet">
 
 <!-- jQuery -->
 <script src="<c:url value = "/resources/dist/jQuery/jquery.min.js" />"></script>
