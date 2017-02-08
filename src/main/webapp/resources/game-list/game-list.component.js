@@ -80,8 +80,8 @@ angular.module('gameList').component('gameList', {
         createGame(main.game);
       } else {
         updateGame(main.game, main.game.id);
-
       }
+      angular.element('#myModal').modal('hide');
       reset();
     }
 
