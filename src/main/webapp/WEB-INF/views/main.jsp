@@ -45,17 +45,23 @@
 <link href="<c:url value = "/resources/css/main-page.css" />" rel="stylesheet">
 <link href="<c:url value = "/resources/css/game-list.css" />" rel="stylesheet">
 
+<!-- jQuery CSS -->
+<link href="<c:url value = "/resources/dist/css/jquery/jquery-ui.css" />" rel="stylesheet">
+
 <!-- jQuery -->
 <script src="<c:url value = "/resources/dist/jQuery/jquery.min.js" />"></script>
 <script src="<c:url value = "/resources/dist/jQuery/jquery.js" />"></script>
+<script src="<c:url value = "/resources/dist/jQuery/jquery-ui.js" />"></script>
 
 <!-- Bootstrap JS -->
 <script src="<c:url value = "/resources/dist/bootstrap/js/bootstrap.js" />"></script>
 
-<!-- Angular Js -->
+<!-- Angular JS -->
 <script src="<c:url value = "/resources/dist/angular/angular.js" />"></script>
 <script src="<c:url value = "/resources/dist/angular/angular-resource.js" />"></script>
 <script src="<c:url value = "/resources/dist/angular/angular-route.js" />"></script>
+<script src="<c:url value = "/resources/dist/angular/ui-bootstrap.js" />"></script>
+
 
 <script src="<c:url value = "/resources/app.module.js" />"></script>
 <script src="<c:url value = "/resources/login-page/login-page.module.js" />"></script>

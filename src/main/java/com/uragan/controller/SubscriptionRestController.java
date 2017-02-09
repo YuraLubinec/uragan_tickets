@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.uragan.model.Season;
 import com.uragan.model.Subscription;
+import com.uragan.sevice.SeasonService;
 import com.uragan.sevice.SubscriptionService;
 
 @RestController
@@ -24,9 +26,29 @@ public class SubscriptionRestController {
 
   @Autowired
   SubscriptionService subService;
+  @Autowired
+  SeasonService seasonService;
 
-  @GetMapping("/main/subscription")
+  // -------------Retrieve All Subscription by id of season--------
+  @GetMapping("/main/subscription/seasonSub/{id}")
+  public ResponseEntity<List<Subscription>> listAllSubBySeasonId(@PathVariable("id") int id) {
+    System.out.println("Controller ..........");
+    List<Subscription> sub = subService.findAllBySeasonId(id);
+    System.out.println("Subscriptions ..........");
+    for (Subscription subs : sub) {
+      System.out.print("Name : " + subs.getFullName());
+      System.out.println(" " + subs.getSeason_id());
+    }
+
+    if (sub.isEmpty()) {
+
+      return new ResponseEntity<List<Subscription>>(HttpStatus.NO_CONTENT);
+    }
+    return new ResponseEntity<List<Subscription>>(sub, HttpStatus.OK);
+  }
+
   // -------------Retrieve All Subscription--------
+  @GetMapping("/main/subscription")
   public ResponseEntity<List<Subscription>> listAllSubscriptions() {
 
     List<Subscription> subs = subService.findAllSubscription();
@@ -36,6 +58,16 @@ public class SubscriptionRestController {
       return new ResponseEntity<List<Subscription>>(HttpStatus.NO_CONTENT);
     }
     return new ResponseEntity<List<Subscription>>(subs, HttpStatus.OK);
+  }
+
+  // -------------Retrieve All Seasons--------
+  @GetMapping("/main/subscription/season")
+  public ResponseEntity<List<Season>> listAllSeasons() {
+    List<Season> seasons = seasonService.findAllSeason();
+    if (seasons.isEmpty()) {
+      return new ResponseEntity<List<Season>>(HttpStatus.NO_CONTENT);
+    }
+    return new ResponseEntity<List<Season>>(seasons, HttpStatus.OK);
   }
 
   // ------Retrieve Single User--------------------------

@@ -22,6 +22,10 @@ angular.module('gameList').component('gameList', {
     main.remove = remove;
     main.reset = reset;
 
+    main.paginList = [];
+
+    $scope.currentPage = 1, $scope.numPerPage = 10, $scope.maxSize = 5;
+
     fetchAllSeasons();
 
     function fetchAllGamesBySeason(id) {
@@ -29,6 +33,7 @@ angular.module('gameList').component('gameList', {
         .then(
           function(d) {
             main.gameList = d;
+            main.paginList = d;
           },
           function(errResponse) {}
         );
@@ -125,8 +130,16 @@ angular.module('gameList').component('gameList', {
       $scope.myForm.$setPristine();
     }
 
-    function createTicketsForSubscriptions() {
+    $scope.numPages = function() {
+      return Math.ceil(main.gameList.length / $scope.numPerPage);
+    };
 
-    }
+    $scope.$watch('currentPage + numPerPage', function() {
+      var begin = (($scope.currentPage - 1) * $scope.numPerPage),
+        end = begin + $scope.numPerPage;
+
+      main.paginList = main.gameList.slice(begin, end);
+    });
+
   }]
 });

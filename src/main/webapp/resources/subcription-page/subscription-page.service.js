@@ -1,27 +1,53 @@
 angular.module('subscriptionPage').factory('SubscriptionPageService',['$http', '$q', function($http,$q){
-  
-	console.log('Service .....')
   var REST_SERVICE_URI = 'http://localhost:8080/uragan/main/subscription/';
   
   var factory = {
+      fetchAllSubBySeasonId : fetchAllSubBySeasonId,
       fetchAllSubscription: fetchAllSubscription,
+      fetchAllSeasons: fetchAllSeasons,
       createSubscription: createSubscription,
       updateSubscription: updateSubscription,
       deleteSubscription: deleteSubscription,
   };
 
   return factory;
+ 
+  function fetchAllSubBySeasonId(id) {
+    var deferred = $q.defer();
+    $http.get(REST_SERVICE_URI + "seasonSub/" + id)
+      .then(
+        function(response) {
+          deferred.resolve(response.data);
+        },
+        function(errResponse) {
+
+          deferred.reject(errResponse);
+        }
+      );
+    return deferred.promise;
+  }
+
+  function fetchAllSeasons() {
+    var deferred = $q.defer();
+    $http.get(REST_SERVICE_URI + "season")
+      .then(
+        function(response) {
+          deferred.resolve(response.data);
+        },
+        function(errResponse) {
+
+          deferred.reject(errResponse);
+        }
+      );
+    return deferred.promise;
+  }
 
   function fetchAllSubscription() {
-	  console.log("fetchAllSubscription service 1");
       var deferred = $q.defer();
-      console.log("fetchAllSubscription service 2");
       $http.get(REST_SERVICE_URI)
           .then(
           function (response) {
-        	  console.log("fetchAllSubscription service 3");
               deferred.resolve(response.data);
-              console.log("fetchAllSubscription service 4");
           },
           function(errResponse){
 
@@ -32,7 +58,6 @@ angular.module('subscriptionPage').factory('SubscriptionPageService',['$http', '
   }
   
   function createSubscription(subscription) {
-	  console.log("SAVING SUB IN SERVICE" + subscription);
       var deferred = $q.defer();
       $http.post(REST_SERVICE_URI, subscription)
           .then(
@@ -47,7 +72,6 @@ angular.module('subscriptionPage').factory('SubscriptionPageService',['$http', '
   }
   
   function updateSubscription(subscription, id) {
-	  console.log("updateSubscription : " + id);
       var deferred = $q.defer();
       $http.put(REST_SERVICE_URI+id, subscription)
           .then(
@@ -62,7 +86,6 @@ angular.module('subscriptionPage').factory('SubscriptionPageService',['$http', '
   }
   
   function deleteSubscription(id) {
-	  console.log('id to be deleted', id);
       var deferred = $q.defer();
       $http.delete(REST_SERVICE_URI+id)
           .then(

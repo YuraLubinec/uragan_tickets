@@ -12,84 +12,90 @@ angular.module('subscriptionPage').component('subscriptionPage', {
         season_id: ''
       };
       main.subscriptionList = [];
+      main.currentSelectSeason = null;
+      main.currentSeason = null;
 
       main.submit = submit;
       main.edit = edit;
       main.remove = remove;
       main.reset = reset;
+      main.seasonList = [];
 
-      fetchAllSubscription();
+      fetchAllSeasons();
+      
+      function fetchAllSubBySeasonId(id) {
+        SubscriptionPageService.fetchAllSubBySeasonId(id)
+          .then(
+            function(d) {
+              main.subscriptionList = d;
+            },
+            function(errResponse) {}
+          );
+      }
+      
+      function fetchAllSeasons() {
+        SubscriptionPageService.fetchAllSeasons()
+          .then(
+            function(d) {
+              main.seasonList = d;
+            },
+            function(errResponse) {}
+          );
+      }
 
       function fetchAllSubscription() {
-        console.log("Controller ........");
+
         SubscriptionPageService.fetchAllSubscription().then(function(d) {
-          console.log("Controller 1 ........");
           main.subscriptionList = d;
-          console.log("Controller 2 ........");
         }, function(errResponse) {});
       }
 
       function createSubscription(subscription) {
-        console.log("create in controller" + subscription)
-
         SubscriptionPageService.createSubscription(subscription).then(
-          fetchAllSubscription,
+          getSubsAfterChange,
           function(errResponse) {});
       }
 
       function deleteSubscription(id) {
-        console.log(" in deleteSubscription ");
         SubscriptionPageService.deleteSubscription(id).then(
-          fetchAllSubscription,
+          getSubsAfterChange,
           function(errResponse) {
             console.error('Error while deleting Sub');
           });
       }
 
       function updateSubscription(subscription, id) {
-        console.log("updateSubscription " + id);
         SubscriptionPageService.updateSubscription(subscription, id).then(
-          fetchAllSubscription,
+          getSubsAfterChange,
           function(errResponse) {});
       }
 
       function submit() {
-        console.log("submit ............");
+        appropriationSeason_Id();
         if (main.subscription.id === null) {
-          console.log('Saving New Sub', main.subscription);
           createSubscription(main.subscription);
         } else {
-          console.log('updating SUB', main.subscription);
           updateSubscription(main.subscription, main.subscription.id);
         }
         reset();
       }
 
       function edit(id) {
-        console.log('id to be edited', id);
         for (var i = 0; i < main.subscriptionList.length; i++) {
           if (main.subscriptionList[i].id === id) {
-            console.log("Length: " + main.subscriptionList.length);
             main.subscription = angular.copy(main.subscriptionList[i]);
             console.log(main.subscriptionList);
             break;
           }
-          console.log("after edit in loop")
         }
-        console.log("after edit")
       }
 
       function remove(id) {
         console.log('id to be deleted', id);
-        if (main.subscription.id === id) { // clean form if the user to be
-          // deleted is shown there.
-          console.log("before reset : " + id);
+        if (main.subscription.id === id) {
           reset();
-          console.log("after reset : " + id);
         }
-        console.log(" deleteSubscription(id);");
         deleteSubscription(id);
-        console.log(" after deleteSubscription(id);");
       }
 
       function reset() {
@@ -101,7 +107,23 @@ angular.module('subscriptionPage').component('subscriptionPage', {
         };
         $scope.subForm.$setPristine(); // reset Form
       }
-
+      
+      function appropriationSeason_Id() {
+        if (main.currentSelectSeason != null) {
+          main.subscription.season_id = main.currentSelectSeason.id;
+        }
+      }
+      
+      $scope.getSubOfSeason = function() {
+        if (main.currentSeason != null) {
+          fetchAllSubBySeasonId(main.currentSeason.id);
+        }
+      }
+      function getSubsAfterChange() {
+        if (main.currentSeason != null) {
+          fetchAllSubBySeasonId(main.currentSeason.id);
+        }
+      }
     }
   ]
 });

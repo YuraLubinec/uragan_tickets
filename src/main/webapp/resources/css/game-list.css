@@ -1,11 +1,12 @@
-.table {
-    background-color: #949191;
-    border-radius: 8px;
-}
-
 .nameTable {
 	  text-align: center;
     margin-bottom: 5px;
     font-size: 25px;
     color: #dddddd;
-}​
+}
+
+th, td {
+    text-align: center;
+    color: white;  
+}
+

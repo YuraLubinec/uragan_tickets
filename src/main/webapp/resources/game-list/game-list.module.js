@@ -1,1 +1,1 @@
-var gameList = angular.module('gameList',[]);
+var gameList = angular.module('gameList',['ui.bootstrap']);

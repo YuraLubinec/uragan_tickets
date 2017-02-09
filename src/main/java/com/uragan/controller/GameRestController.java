@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uragan.model.Game;
 import com.uragan.model.Season;
-import com.uragan.model.Subscription;
 import com.uragan.sevice.GameService;
 import com.uragan.sevice.SeasonService;
 import com.uragan.sevice.SubscriptionService;
@@ -79,9 +78,10 @@ public class GameRestController {
   @ResponseStatus(HttpStatus.CREATED)
   public void createGame(@RequestBody Game game) {
     gameService.save(game);
-    Game lastGame = gameService.getLastGame();
-    List<Subscription> subscriptions = subscriptionService.findAllBySeasonId(lastGame.getSeason_id());
-    ticketService.saveTicketsForSubscriptions(lastGame.getId(), subscriptions);
+    // Game lastGame = gameService.getLastGame();
+    // List<Subscription> subscriptions =
+    // subscriptionService.findAllBySeasonId(lastGame.getSeason_id());
+    // ticketService.saveTicketsForSubscriptions(lastGame.getId(), subscriptions);
 
   }
 
