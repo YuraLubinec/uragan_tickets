@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html">
-<html ng-app="ticketApp">
+<html ng-app="ticketApp" ng-cloak class="ng-cloak">
 <head>
 
 <meta charset="utf-8">

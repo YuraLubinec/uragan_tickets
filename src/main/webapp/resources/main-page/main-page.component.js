@@ -1,6 +1,6 @@
 angular.module('mainPage').component('mainPage', {
-  templateUrl : 'template/main/',
-  controller : [ 'MainPageService', function MainPageController(MainPageService) {
+  templateUrl: 'template/main/',
+  controller: ['MainPageService', function MainPageController(MainPageService) {
     var main = this;
     main.gameId = null;
     main.seatList = [];
@@ -8,18 +8,16 @@ angular.module('mainPage').component('mainPage', {
     main.currentGame = null;
     main.seat_obj = null;
     main.ticket = {
-      id : null,
-      seat_id : null,
-      game_id : null
+      id: null,
+      seat_id: null,
+      game_id: null
     };
     main.submit = submit;
     main.pointAllOccupiedSeats = pointAllOccupiedSeats;
     main.classChecker = classChecker;
     main.deleteT = deleteT;
-
     fetchAllGames();
     fetchAllSectors();
-    
 
     function fetchAllSectors() {
       MainPageService.fetchAllSectors().then(function(response) {
@@ -39,17 +37,31 @@ angular.module('mainPage').component('mainPage', {
     }
 
     function pointAllOccupiedSeats() {
-
       if (main.ticket.game_id != null) {
         refreshCurrentGameById();
       }
       if (main.currentGame != null) {
         angular.element('button').removeClass('buttonStyle');
+        angular.element('button').removeClass('buttonStyleSubscription');
+        angular.element('button').removeAttr('disabled');
+        pointAllSubscribedSeats();
         for (var i = 0; i < main.currentGame.tickets.length; i++) {
           var occupiedSeat = angular.element('#' + main.currentGame.tickets[i].seat_id);
           occupiedSeat.addClass('buttonStyle');
         }
       }
+    }
+
+    function pointAllSubscribedSeats() {
+      MainPageService.fetchSeason(main.currentGame.season_id).then(function(response) {
+        for (var i = 0; i < response.subscription.length; i++) {
+          var occupiedSeat = angular.element('#' + response.subscription[i].seat_id);
+          occupiedSeat.addClass('buttonStyleSubscription');
+          occupiedSeat.attr('disabled', true);
+        }
+      }, function(errResponse) {
+        console.error('Error while fetching Season');
+      });
     }
 
     function createTicket(ticket) {
@@ -71,9 +83,9 @@ angular.module('mainPage').component('mainPage', {
         }
       }
       main.ticket = {
-        id : null,
-        seat_id : null,
-        game_id : null
+        id: null,
+        seat_id: null,
+        game_id: null
       };
     }
 
@@ -99,6 +111,5 @@ angular.module('mainPage').component('mainPage', {
       }
       angular.element('#myModal').modal('hide');
     }
-
-  } ]
+  }]
 });

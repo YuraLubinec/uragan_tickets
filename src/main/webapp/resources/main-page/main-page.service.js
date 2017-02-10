@@ -6,7 +6,8 @@ angular.module('mainPage').factory('MainPageService', [ '$http', '$q', function(
     fetchAllSectors : fetchAllSectors,
     createTicket : createTicket,
     fetchAllGames : fetchAllGames,
-    deleteTicket: deleteTicket
+    deleteTicket: deleteTicket,
+    fetchSeason : fetchSeason
   };
 
   return factory;
@@ -17,6 +18,17 @@ angular.module('mainPage').factory('MainPageService', [ '$http', '$q', function(
       deferred.resolve(response.data);
     }, function(errResponse) {
       console.error('Error while fetching Seats');
+      deferred.reject(errResponse);
+    });
+    return deferred.promise;
+  }
+  
+  function fetchSeason(id) {
+    var deferred = $q.defer();
+    $http.get(REST_SERVICE_URI+"/season/"+id).then(function(response) {
+      deferred.resolve(response.data);
+    }, function(errResponse) {
+      console.error('Error while fetching Season');
       deferred.reject(errResponse);
     });
     return deferred.promise;

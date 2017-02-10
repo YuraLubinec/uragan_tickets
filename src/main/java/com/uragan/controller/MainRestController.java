@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uragan.model.Game;
+import com.uragan.model.Season;
 import com.uragan.model.Sector;
 import com.uragan.model.Ticket;
 import com.uragan.sevice.GameService;
+import com.uragan.sevice.SeasonService;
 import com.uragan.sevice.SectorService;
 import com.uragan.sevice.TicketService;
 
@@ -33,6 +35,9 @@ public class MainRestController {
   
   @Autowired
   private GameService serviceGame;
+  
+  @Autowired
+  private SeasonService serviceSeason;
   
   @GetMapping
   public ResponseEntity<List<Sector>> getAllSeats() {
@@ -59,6 +64,16 @@ public class MainRestController {
       return new ResponseEntity<List<Game>>(HttpStatus.NO_CONTENT);
     }
     return new ResponseEntity<List<Game>>(games, HttpStatus.OK);
+  }
+  
+  @GetMapping("/season/{id}")
+  public ResponseEntity<Season> getAllGames(@PathVariable int id) {
+
+    Season season = serviceSeason.findById(id);
+    if (season == null) {
+      return new ResponseEntity<Season>(HttpStatus.NO_CONTENT);
+    }
+    return new ResponseEntity<Season>(season, HttpStatus.OK);
   }
   
   @DeleteMapping("/{id}")

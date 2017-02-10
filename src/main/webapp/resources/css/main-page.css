@@ -11,7 +11,7 @@ body{
 main-page tr button {
 	padding: 1px;
 	width: 100%;
-	font-size: 80%; 
+	font-size: 9px; 
 	color: #000000;
 }
 
@@ -41,7 +41,11 @@ main-page table {
 }
 
 .buttonStyle {
-	background-color: red;
+  background-color: #FF4500;
+}
+
+.buttonStyleSubscription {
+  background-color: #008000;
 }
 
 .text-center h2 {
