@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.uragan.model.Season;
+import com.uragan.model.Seat;
+import com.uragan.model.Sector;
 import com.uragan.model.Subscription;
 import com.uragan.sevice.SeasonService;
+import com.uragan.sevice.SeatService;
+import com.uragan.sevice.SectorService;
 import com.uragan.sevice.SubscriptionService;
 
 @RestController
@@ -28,8 +32,11 @@ public class SubscriptionRestController {
   SubscriptionService subService;
   @Autowired
   SeasonService seasonService;
+  @Autowired
+  SectorService sectorService;
+  @Autowired
+  SeatService seatService;
 
-  // -------------Retrieve All Subscription by id of season--------
   @GetMapping("/main/subscription/seasonSub/{id}")
   public ResponseEntity<List<Subscription>> listAllSubBySeasonId(@PathVariable("id") int id) {
     List<Subscription> sub = subService.findAllBySeasonId(id);
@@ -40,7 +47,6 @@ public class SubscriptionRestController {
     return new ResponseEntity<List<Subscription>>(sub, HttpStatus.OK);
   }
 
-  // -------------Retrieve All Subscription--------
   @GetMapping("/main/subscription")
   public ResponseEntity<List<Subscription>> listAllSubscriptions() {
 
@@ -53,7 +59,24 @@ public class SubscriptionRestController {
     return new ResponseEntity<List<Subscription>>(subs, HttpStatus.OK);
   }
 
-  // -------------Retrieve All Seasons--------
+  @GetMapping("/main/subscription/seats")
+  public ResponseEntity<List<Seat>> listAllSeats() {
+    List<Seat> seats = seatService.findAllSeats();
+    if (seats.isEmpty()) {
+      return new ResponseEntity<List<Seat>>(HttpStatus.NO_CONTENT);
+    }
+    return new ResponseEntity<List<Seat>>(seats, HttpStatus.OK);
+  }
+
+  @GetMapping("/main/subscription/sectors")
+  public ResponseEntity<List<Sector>> listAllSectors() {
+    List<Sector> sectors = sectorService.findAllSector();
+    if (sectors.isEmpty()) {
+      return new ResponseEntity<List<Sector>>(HttpStatus.NO_CONTENT);
+    }
+    return new ResponseEntity<List<Sector>>(sectors, HttpStatus.OK);
+  }
+
   @GetMapping("/main/subscription/season")
   public ResponseEntity<List<Season>> listAllSeasons() {
     List<Season> seasons = seasonService.findAllSeason();
@@ -63,7 +86,6 @@ public class SubscriptionRestController {
     return new ResponseEntity<List<Season>>(seasons, HttpStatus.OK);
   }
 
-  // ------Retrieve Single User--------------------------
   @GetMapping(value = "/main/subscription/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Subscription> getSubscription(@PathVariable("id") int id) {
 
@@ -74,7 +96,6 @@ public class SubscriptionRestController {
     return new ResponseEntity<Subscription>(sub, HttpStatus.OK);
   }
 
-  // --Create a Subscription-----------
   @PostMapping("/main/subscription")
   public ResponseEntity<Void> createSubscription(@RequestBody Subscription subscription,
       UriComponentsBuilder ucBuilder) {
@@ -86,7 +107,6 @@ public class SubscriptionRestController {
     return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
   }
 
-  // --Delete a Subscription-----------
   @DeleteMapping("/main/subscription/{id}")
   public ResponseEntity<Subscription> deleteSubsription(@PathVariable("id") int id) {
     Subscription sub = subService.findById(id);
@@ -97,12 +117,8 @@ public class SubscriptionRestController {
     return new ResponseEntity<Subscription>(HttpStatus.NO_CONTENT);
   }
 
-  // ------------------- Update a Subscription----------------------------------
-
   @PutMapping("/main/subscription/{id}")
   public ResponseEntity<Subscription> updateSub(@PathVariable("id") int id, @RequestBody Subscription subscription) {
-    System.out.println("Updating Game " + id);
-
     Subscription currentSubscription = subService.findById(id);
 
     if (currentSubscription == null) {

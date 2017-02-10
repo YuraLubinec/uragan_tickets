@@ -27,17 +27,13 @@ public class GameRestController {
 
   @Autowired
   GameService gameService;
-
   @Autowired
   SeasonService seasonService;
-
   @Autowired
   SubscriptionService subscriptionService;
-
   @Autowired
   TicketService ticketService;
 
-  // -------------Retrieve All Games--------
   @GetMapping("/main/game")
   public ResponseEntity<List<Game>> listAllGames() {
     List<Game> games = gameService.findAllGames();
@@ -48,7 +44,6 @@ public class GameRestController {
     return new ResponseEntity<List<Game>>(games, HttpStatus.OK);
   }
 
-  // -------------Retrieve All Seasons--------
   @GetMapping("/main/game/season")
   public ResponseEntity<List<Season>> listAllSeasons() {
     List<Season> seasons = seasonService.findAllSeason();
@@ -60,7 +55,6 @@ public class GameRestController {
     return new ResponseEntity<List<Season>>(seasons, HttpStatus.OK);
   }
 
-  // -------------Retrieve All Games by id of season--------
   @GetMapping("/main/game/seasonGames/{id}")
   public ResponseEntity<List<Game>> listAllGamesBySeasonId(@PathVariable("id") int id) {
 
@@ -73,7 +67,6 @@ public class GameRestController {
     return new ResponseEntity<List<Game>>(games, HttpStatus.OK);
   }
 
-  // --Create a Game and tickets for all subscriptions by season ID-----------
   @PostMapping("/main/game")
   @ResponseStatus(HttpStatus.CREATED)
   public void createGame(@RequestBody Game game) {
@@ -85,7 +78,6 @@ public class GameRestController {
 
   }
 
-  // ------Retrieve Single Game--------------------------
   @GetMapping(value = "/main/game/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Game> getGame(@PathVariable("id") int id) {
     Game game = gameService.findById(id);
@@ -95,7 +87,6 @@ public class GameRestController {
     return new ResponseEntity<Game>(game, HttpStatus.OK);
   }
 
-  // --Delete a User-----------
   @DeleteMapping("/main/game/{id}")
   public ResponseEntity<Game> deleteUser(@PathVariable("id") int id) {
 
@@ -107,8 +98,6 @@ public class GameRestController {
     gameService.delete(id);
     return new ResponseEntity<Game>(HttpStatus.NO_CONTENT);
   }
-
-  // ------------------- Update a Game----------------------------------
 
   @PutMapping("/main/game/{id}")
   public ResponseEntity<Game> updateGame(@PathVariable("id") int id, @RequestBody Game game) {

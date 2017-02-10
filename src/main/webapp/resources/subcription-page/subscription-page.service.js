@@ -5,6 +5,8 @@ angular.module('subscriptionPage').factory('SubscriptionPageService',['$http', '
       fetchAllSubBySeasonId : fetchAllSubBySeasonId,
       fetchAllSubscription: fetchAllSubscription,
       fetchAllSeasons: fetchAllSeasons,
+      fetchAllSectors: fetchAllSectors,
+      fetchAllSeats: fetchAllSeats,
       createSubscription: createSubscription,
       updateSubscription: updateSubscription,
       deleteSubscription: deleteSubscription,
@@ -30,6 +32,36 @@ angular.module('subscriptionPage').factory('SubscriptionPageService',['$http', '
   function fetchAllSeasons() {
     var deferred = $q.defer();
     $http.get(REST_SERVICE_URI + "season")
+      .then(
+        function(response) {
+          deferred.resolve(response.data);
+        },
+        function(errResponse) {
+
+          deferred.reject(errResponse);
+        }
+      );
+    return deferred.promise;
+  }
+  
+  function fetchAllSectors() {
+    var deferred = $q.defer();
+    $http.get(REST_SERVICE_URI + "sectors")
+      .then(
+        function(response) {
+          deferred.resolve(response.data);
+        },
+        function(errResponse) {
+
+          deferred.reject(errResponse);
+        }
+      );
+    return deferred.promise;
+  }
+  
+  function fetchAllSeats() {
+    var deferred = $q.defer();
+    $http.get(REST_SERVICE_URI + "seats")
       .then(
         function(response) {
           deferred.resolve(response.data);

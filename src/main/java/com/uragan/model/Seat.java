@@ -17,6 +17,7 @@ public class Seat {
   private int id;
   private int row;
   private int place;
+  private int sector_id;
 
   @Id
   @Column(name = "id")
@@ -45,6 +46,15 @@ public class Seat {
 
   public void setPlace(int place) {
     this.place = place;
+  }
+
+  @Column(name = "sector_id")
+  public int getSector_id() {
+    return sector_id;
+  }
+
+  public void setSector_id(int sector_id) {
+    this.sector_id = sector_id;
   }
 
   @Override
