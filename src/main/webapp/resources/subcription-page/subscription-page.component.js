@@ -20,6 +20,9 @@ angular.module('subscriptionPage').component('subscriptionPage', {
       main.remove = remove;
       main.reset = reset;
       main.seasonList = [];
+      main.paginList = [];
+
+      $scope.currentPage = 1, $scope.numPerPage = 10, $scope.maxSize = 5;
 
       fetchAllSeasons();
       
@@ -28,6 +31,7 @@ angular.module('subscriptionPage').component('subscriptionPage', {
           .then(
             function(d) {
               main.subscriptionList = d;
+              main.paginList = d;
             },
             function(errResponse) {}
           );
@@ -77,6 +81,7 @@ angular.module('subscriptionPage').component('subscriptionPage', {
         } else {
           updateSubscription(main.subscription, main.subscription.id);
         }
+        angular.element('#myModal').modal('hide');
         reset();
       }
 
@@ -105,7 +110,7 @@ angular.module('subscriptionPage').component('subscriptionPage', {
           seat_id: '',
           season_id: ''
         };
-        $scope.subForm.$setPristine(); // reset Form
+        $scope.subForm.$setPristine();
       }
       
       function appropriationSeason_Id() {
@@ -124,6 +129,17 @@ angular.module('subscriptionPage').component('subscriptionPage', {
           fetchAllSubBySeasonId(main.currentSeason.id);
         }
       }
+      
+      $scope.numPages = function() {
+        return Math.ceil(main.subscriptionList.length / $scope.numPerPage);
+      };
+
+      $scope.$watch('currentPage + numPerPage', function() {
+        var begin = (($scope.currentPage - 1) * $scope.numPerPage),
+          end = begin + $scope.numPerPage;
+
+        main.paginList = main.subscriptionList.slice(begin, end);
+      });
     }
   ]
 });

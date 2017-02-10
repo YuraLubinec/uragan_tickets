@@ -1,1 +1,1 @@
-var subscriptionPage = angular.module('subscriptionPage',[]);
+var subscriptionPage = angular.module('subscriptionPage',['ui.bootstrap']);

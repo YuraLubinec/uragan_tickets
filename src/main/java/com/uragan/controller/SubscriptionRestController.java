@@ -32,14 +32,7 @@ public class SubscriptionRestController {
   // -------------Retrieve All Subscription by id of season--------
   @GetMapping("/main/subscription/seasonSub/{id}")
   public ResponseEntity<List<Subscription>> listAllSubBySeasonId(@PathVariable("id") int id) {
-    System.out.println("Controller ..........");
     List<Subscription> sub = subService.findAllBySeasonId(id);
-    System.out.println("Subscriptions ..........");
-    for (Subscription subs : sub) {
-      System.out.print("Name : " + subs.getFullName());
-      System.out.println(" " + subs.getSeason_id());
-    }
-
     if (sub.isEmpty()) {
 
       return new ResponseEntity<List<Subscription>>(HttpStatus.NO_CONTENT);
