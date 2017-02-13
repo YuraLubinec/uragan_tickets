@@ -34,6 +34,9 @@ angular.module('subscriptionPage').component('subscriptionPage', {
       main.remove = remove;
       main.reset = reset;
 
+      $scope.propertyName = 'place';
+      $scope.reverse = true;
+      
       $scope.currentPage = 1, $scope.numPerPage = 10, $scope.maxSize = 5;
 
       
@@ -221,6 +224,11 @@ angular.module('subscriptionPage').component('subscriptionPage', {
 
         main.paginList = main.subscriptionList.slice(begin, end);
       });
+      
+      $scope.sortBy = function(propertyName) {
+        $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+        $scope.propertyName = propertyName;
+      };
     }
   ]
 });

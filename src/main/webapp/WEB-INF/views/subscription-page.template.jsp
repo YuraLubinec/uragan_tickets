@@ -69,7 +69,7 @@
 </div>
 
 
-<div class="col-lg-2 col-md-2 add-padding-top">
+<div class="col-lg-2 col-md-2 add-padding-top add-padding-left">
   <button id="idSubModal" data-toggle="modal" data-target="#myModal" class="btn btn-primary form-control"> Cтворити абонемент </button>
 </div>
 <div class="col-lg-4 col-lg-offset-6 col-md-4 col-lg-offset-2 add-padding-top">
@@ -77,7 +77,9 @@
         <option value="" disabled>Оберіть сезон</option>
         </select>
 </div>
-
+<div class="col-lg-2 col-lg-offset-2 col-md-2 add-padding-top not-padding-right">
+  <input type="text" class="form-control" placeholder="search..." ng-model="filterText">
+</div>
 <div class="bordered col-md-12 col-lg-12 text-center">
   <div class="row">
     <div class="col-md-12">
@@ -85,19 +87,19 @@
         <table class="table">
           <thead>
             <tr>
-              <th class="col-md-2">П І П</th>
-              <th class="col-md-2">СЕКТОР</th>
-              <th class="col-md-1">РЯД</th>
-              <th class="col-md-1">МІСЦЕ</th>
-              <th class="col-md-3">СЕЗОН</th>
+            
+              <th class="col-md-2"><a href="" ng-click="sortBy('fullName')">П І П</a></th>
+              <th class="col-md-2"><a href="" ng-click="sortBy('name')">СЕКТОР</a></th>
+              <th class="col-md-1"><a href="" ng-click="sortBy('row')">РЯД</a></th>
+              <th class="col-md-1"><a href="" ng-click="sortBy('place')">МІСЦЕ</a></th>
+              <th class="col-md-3"><a>СЕЗОН</a></th>
               <th class="col-md-3"></th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="sub in $ctrl.paginList ">
+            <tr ng-repeat="sub in $ctrl.paginList | orderBy:propertyName:reverse | filter : {fullName: filterText} as filteredName">
               <td><span ng-bind="sub.fullName"></span></td>
 
-              
               <td ng-repeat="seat in $ctrl.seatList" ng-if="seat.id == sub.seat_id">
                 <span ng-repeat="sector in $ctrl.sectorList" ng-if ="sector.id == seat.sector_id" >
                   <span ng-bind="sector.name"></span>

@@ -47,7 +47,7 @@
 </div>
 
 
-<div class="col-lg-2 col-md-2 add-padding-top">
+<div class="col-lg-2 col-md-2 add-padding-top  add-padding-left">
   <button id="idGameModal" data-toggle="modal" data-target="#myModal" class="btn btn-primary custom-width form-control">Створити нову гру</button>
 </div>
 <div class=" col-lg-4 col-lg-offset-6 col-md-4 col-lg-offset-2 add-padding-top">
@@ -55,6 +55,9 @@
     ng-change="getGamesOfSeason()">
     <option value="" disabled>Оберіть сезон</option>
     </select>
+</div>
+<div class="col-lg-2 col-lg-offset-2 col-md-2 add-padding-top not-padding-right">
+  <input type="text" class="form-control" placeholder="search..." ng-model="filterText">
 </div>
 
 
@@ -74,7 +77,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="game in $ctrl.paginList">
+            <tr ng-repeat="game in $ctrl.paginList | filter : {secondTeam: filterText} as filteredName">
 
               <td><span ng-bind="game.firstTeam"></span></td>
               <td><span ng-bind="game.secondTeam"></span></td>
