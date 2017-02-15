@@ -56,7 +56,6 @@ angular.module('mainPage').factory('MainPageService', [ '$http', '$q', function(
     return deferred.promise;       
   }
 
-  
   function deleteTicket(id){
     var deferred = $q.defer();
     $http.delete(REST_SERVICE_URI + "/"+id).then(function(response) {

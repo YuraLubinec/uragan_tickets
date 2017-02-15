@@ -14,7 +14,9 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<img alt="no photo" class="navbar-brand" ng-src="resources/images/Uragan_Logo.png" />" >
+			  <a href="#!/">
+			    <img alt="no photo" class="navbar-brand" ng-src="resources/images/Uragan_Logo.png"/>
+			  </a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#!/">Головна</a></li>
@@ -68,6 +70,7 @@
 <script src="<c:url value = "/resources/main-page/main-page.module.js" />"></script>
 <script src="<c:url value = "/resources/game-list/game-list.module.js" />"></script>
 <script src="<c:url value = "/resources/subcription-page/subscription-page.module.js" />"></script>
+<script src="<c:url value = "/resources/sector-page/sector-page.module.js" />"></script>
 
 <script src="<c:url value = "/resources/app.config.js" />"></script>
 
@@ -82,6 +85,9 @@
 
 <script src="<c:url value = "/resources/subcription-page/subscription-page.component.js" />"></script>
 <script src="<c:url value = "/resources/subcription-page/subscription-page.service.js" />"></script>
+
+<script src="<c:url value = "/resources/sector-page/sector-page.component.js" />"></script>
+<script src="<c:url value = "/resources/sector-page/sector-page.service.js" />"></script>
 
 </html>
 

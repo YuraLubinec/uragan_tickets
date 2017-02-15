@@ -1,3 +1,4 @@
+'use strict'
 angular.module('mainPage').component('mainPage', {
   templateUrl: 'template/main/',
   controller: ['MainPageService', function MainPageController(MainPageService) {
@@ -16,6 +17,7 @@ angular.module('mainPage').component('mainPage', {
     main.pointAllOccupiedSeats = pointAllOccupiedSeats;
     main.classChecker = classChecker;
     main.deleteT = deleteT;
+   
     fetchAllGames();
     fetchAllSectors();
 

@@ -30,5 +30,10 @@ public class MainTemplateController {
     System.out.println("bla bla SUB".toUpperCase());
     return "subscription-page.template";
   }
+  
+  @GetMapping("/sector")
+  public String getSectorPage() {
+    return "sector-page.template";
+  }
 
 }

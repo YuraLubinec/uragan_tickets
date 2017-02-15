@@ -1,10 +1,13 @@
 package com.uragan.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uragan.DTO.SectorDTO;
 import com.uragan.model.Game;
 import com.uragan.model.Season;
 import com.uragan.model.Sector;
@@ -67,7 +71,7 @@ public class MainRestController {
   }
   
   @GetMapping("/season/{id}")
-  public ResponseEntity<Season> getAllGames(@PathVariable int id) {
+  public ResponseEntity<Season> getAllSeasons(@PathVariable int id) {
 
     Season season = serviceSeason.findById(id);
     if (season == null) {
@@ -83,4 +87,28 @@ public class MainRestController {
     serviceTicket.delete(id);
   }
   
+  @GetMapping("/sectors")
+  public ResponseEntity<List<SectorDTO>> getAllSectors() {
+    
+    List<Sector> sectors = serviceSector.findAllSector();
+    
+    List<SectorDTO> sectorsDTO = sectors.stream()
+        .map(sector -> new SectorDTO(sector.getId(), sector.getName(), sector.getPrice())).collect(Collectors.toList());
+    
+    if (sectorsDTO.isEmpty()) {
+      return new ResponseEntity<List<SectorDTO>>(HttpStatus.NO_CONTENT);
+    }
+    return new ResponseEntity<List<SectorDTO>>(sectorsDTO, HttpStatus.OK);
+  }
+  
+  @PostMapping("/sectors/price")
+  @ResponseStatus(HttpStatus.OK)
+  public void setSectorPrice(@Validated @RequestBody SectorDTO sectorDTO, BindingResult result){
+    
+    if(result.hasErrors()){
+      //loging is needed here
+      return;
+    }
+    serviceSector.updateSectorPrice(sectorDTO);
+  }
 }
