@@ -10,3 +10,11 @@ th, td {
 .not-padding-right{
 	padding-right: 0px;
 }
+
+.thA {
+    color: #f3f5f7;
+}
+
+a:hover { 
+   color: rgb(66, 139, 202);
+}

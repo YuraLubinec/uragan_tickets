@@ -68,11 +68,11 @@
         <table class="table" id="games">
           <thead>
             <tr>
-              <th class="col-md-2">Господарі</th>
-              <th class="col-md-2">Гості</th>
-              <th class="col-md-2">Дата</th>
-              <th class="col-md-2">Час</th>
-              <th class="col-md-2">Сезон</th>
+              <th class="col-md-2">ГОСПОДАРІ</th>
+              <th class="col-md-2">ГОСТІ</th>
+              <th class="col-md-2">ДАТА</th>
+              <th class="col-md-2">ЧАС</th>
+              <th class="col-md-2">СЕЗОН</th>
               <th class="col-md-2" width="20%"></th>
             </tr>
           </thead>

@@ -88,12 +88,12 @@
           <thead>
             <tr>
             
-              <th class="col-md-2"><a href="" ng-click="sortBy('fullName')">П І П</a></th>
-              <th class="col-md-2"><a href="" ng-click="sortBy('name')">СЕКТОР</a></th>
-              <th class="col-md-1"><a href="" ng-click="sortBy('row')">РЯД</a></th>
-              <th class="col-md-1"><a href="" ng-click="sortBy('place')">МІСЦЕ</a></th>
-              <th class="col-md-3"><a>СЕЗОН</a></th>
-              <th class="col-md-3"></th>
+              <th class="col-md-2"><a class = " thA" href="" ng-click="sortBy('fullName')">П І П</a></th>
+              <th class="col-md-2"><a  class = " thA" href="" ng-click="sortBy('name')">СЕКТОР</a></th>
+              <th class="col-md-1"><a  class = " thA" href="" ng-click="sortBy('row')">РЯД</a></th>
+              <th class="col-md-1"><a  class = " thA"href="" ng-click="sortBy('place')">МІСЦЕ</a></th>
+              <th class="col-md-3">СЕЗОН</th>
+              <th class="col-md-3 thA"></th>
             </tr>
           </thead>
           <tbody>
