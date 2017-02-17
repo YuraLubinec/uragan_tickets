@@ -22,7 +22,7 @@
             <div class="form-group">
               <label class="control-lable" for="file">Сезон</label>
               <div class="">
-                <select class="form-control" class="form-control" ng-model="$ctrl.currentSelectSeason" ng-options="season.years for season in $ctrl.seasonList">
+                <select class="form-control" class="form-control" ng-model="$ctrl.currentSelectSeason" ng-options="season.years for season in $ctrl.seasonList" required="required">
             <option value="" disabled>Оберіть сезон</option>
             </select>
               </div>
@@ -31,7 +31,7 @@
             <div class="form-group">
               <label class="control-lable" for="file">Сектор</label>
               <div class="">
-                <select class="form-control" class="form-control" ng-model="$ctrl.currentSelectSector" ng-options="sector.name for sector in $ctrl.sectorList" ng-change="getRowBySector()">
+                <select class="form-control" class="form-control" ng-model="$ctrl.currentSelectSector" ng-options="sector.name for sector in $ctrl.sectorList" ng-change="getRowBySector()" required="required">
             <option value="" disabled>Оберіть сектор</option>
             </select>
               </div>
@@ -40,7 +40,7 @@
            <div class="form-group">
               <label class="control-lable" for="file">Ряд</label>
               <div class="">
-                <select class="form-control" class="form-control" ng-model="$ctrl.currentSelectRow" ng-options="seat.row for seat in $ctrl.seatListBySector" ng-change="getAvailablePlace()">
+                <select class="form-control" class="form-control" ng-model="$ctrl.currentSelectRow" ng-options="seat.row for seat in $ctrl.seatListBySector" ng-change="getAvailablePlace()" required="required">
             <option value="" disabled>Оберіть ряд</option>
             </select>
               </div>
@@ -48,7 +48,7 @@
             <div class="form-group">
               <label class="control-lable" for="file">Місце</label>
               <div class="">
-                <select class="form-control" class="form-control" ng-model="$ctrl.currentSelectPlace" ng-options="seat.place for seat in $ctrl.placeList">
+                <select class="form-control" class="form-control" ng-model="$ctrl.currentSelectPlace" ng-options="seat.place for seat in $ctrl.placeList" required="required">
             <option value="" disabled>Оберіть місце</option>
             </select>
               </div>
@@ -88,33 +88,33 @@
           <thead>
             <tr>
             
-              <th class="col-md-2"><a class = " thA" href="" ng-click="sortBy('fullName')">П І П</a></th>
-              <th class="col-md-2"><a  class = " thA" href="" ng-click="sortBy('name')">СЕКТОР</a></th>
-              <th class="col-md-1"><a  class = " thA" href="" ng-click="sortBy('row')">РЯД</a></th>
-              <th class="col-md-1"><a  class = " thA"href="" ng-click="sortBy('place')">МІСЦЕ</a></th>
-              <th class="col-md-3">СЕЗОН</th>
-              <th class="col-md-3 thA"></th>
+              <th class="col-md-2 table-th-td"><a  class = "thA" href="" ng-click="sortBy('fullName')">П І П</a></th>
+              <th class="col-md-2 table-th-td"><a  class = "thA" href="" ng-click="sortBy('name')">СЕКТОР</a></th>
+              <th class="col-md-1 table-th-td"><a  class = "thA" href="" ng-click="sortBy('row')">РЯД</a></th>
+              <th class="col-md-1 table-th-td"><a  class = "thA" href="" ng-click="sortBy('place')">МІСЦЕ</a></th>
+              <th class="col-md-3 table-th-td">СЕЗОН</th>
+              <th class="col-md-3 table-th-td thA"></th>
             </tr>
           </thead>
           <tbody>
             <tr ng-repeat="sub in $ctrl.paginList | orderBy:propertyName:reverse | filter : {fullName: filterText} as filteredName">
-              <td><span ng-bind="sub.fullName"></span></td>
+              <td class= "table-th-td"><span ng-bind="sub.fullName"></span></td>
 
-              <td ng-repeat="seat in $ctrl.seatList" ng-if="seat.id == sub.seat_id">
+              <td class= "table-th-td" ng-repeat="seat in $ctrl.seatList" ng-if="seat.id == sub.seat_id">
                 <span ng-repeat="sector in $ctrl.sectorList" ng-if ="sector.id == seat.sector_id" >
                   <span ng-bind="sector.name"></span>
                   </span>
               </td>
               
-              <td ng-repeat="seat in $ctrl.seatList" ng-if="seat.id == sub.seat_id">
+              <td  class= "table-th-td" ng-repeat="seat in $ctrl.seatList" ng-if="seat.id == sub.seat_id">
                 <span ng-bind="seat.row"></span>
               </td>
               
-              <td ng-repeat="seat in $ctrl.seatList" ng-if="seat.id == sub.seat_id">
+              <td class= "table-th-td" ng-repeat="seat in $ctrl.seatList" ng-if="seat.id == sub.seat_id">
                 <span ng-bind="seat.place"></span>
               </td>
   
-              <td ng-repeat="season in $ctrl.seasonList" ng-if="season.id == sub.season_id">
+              <td class= "table-th-td" ng-repeat="season in $ctrl.seasonList" ng-if="season.id == sub.season_id">
                 <span ng-bind="season.years"></span>
               </td>
               <td>

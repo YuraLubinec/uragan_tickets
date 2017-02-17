@@ -201,7 +201,7 @@ label {
 	color: #ffffff;
 }
 
-input.ng-invalid {
+sector-page input.ng-invalid {
 	background-color: rgba(215, 0, 0, 0.6);
 	color: #ffffff;
 	background-image: none;
@@ -216,6 +216,6 @@ input.ng-invalid {
 	transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
 }
 
-input.ng-invalid:focus {
+sector-page input.ng-invalid:focus {
 	border-color: #FF0000 !important;
 }

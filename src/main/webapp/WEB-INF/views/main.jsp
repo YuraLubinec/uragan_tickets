@@ -50,6 +50,13 @@
 <!-- jQuery CSS -->
 <link href="<c:url value = "/resources/dist/css/jquery/jquery-ui.css" />" rel="stylesheet">
 
+
+<!-- Angular Material style sheet  -->
+<link href="<c:url value = "/resources/css/angular-material/angular-material.min.css" />" rel="stylesheet"> 
+ 
+<!-- mdPickers CSS -->
+ <link href="<c:url value = "/resources/css/mdPickers/mdPickers.min.css" />" rel="stylesheet"> 
+
 <!-- jQuery -->
 <script src="<c:url value = "/resources/dist/jQuery/jquery.min.js" />"></script>
 <script src="<c:url value = "/resources/dist/jQuery/jquery.js" />"></script>
@@ -62,7 +69,23 @@
 <script src="<c:url value = "/resources/dist/angular/angular.js" />"></script>
 <script src="<c:url value = "/resources/dist/angular/angular-resource.js" />"></script>
 <script src="<c:url value = "/resources/dist/angular/angular-route.js" />"></script>
-<script src="<c:url value = "/resources/dist/angular/ui-bootstrap.js" />"></script>
+
+<!-- ui-bootstrap JS -->
+<script src="<c:url value = "/resources/js/ui-bootstrap/ui-bootstrap.js" />"></script>
+
+<!-- Angular Material requires libraries -->
+<script src="<c:url value = "/resources/js/angular-material/angular-animate.min.js"/>"></script>
+<script src="<c:url value = "/resources/js/angular-material/angular-aria.min.js"/>"></script>
+
+<!-- Angular Material Library -->
+<script src="<c:url value = "/resources/js/angular-material/angular-material.min.js"/>"></script>
+
+<!-- Angular Moment JS -->
+<script src="<c:url value = "/resources/js/moment/moment.js" />"></script>
+<script src="<c:url value = "/resources/js/moment/angular-moment.js" />"></script>
+
+<!-- mdPickers -->
+<script src="<c:url value = "/resources/js/angular-material/mdPickers/mdPickers.min.js" />"></script>
 
 
 <script src="<c:url value = "/resources/app.module.js" />"></script>
