@@ -1,7 +1,7 @@
 'use strict'
 angular.module('mainPage').component('mainPage', {
-  templateUrl: 'template/main/',
-  controller: ['MainPageService', function MainPageController(MainPageService) {
+  templateUrl : 'template/main/',
+  controller : [ 'MainPageService', function MainPageController(MainPageService) {
     var main = this;
     main.gameId = null;
     main.seatList = [];
@@ -9,15 +9,15 @@ angular.module('mainPage').component('mainPage', {
     main.currentGame = null;
     main.seat_obj = null;
     main.ticket = {
-      id: null,
-      seat_id: null,
-      game_id: null
+      id : null,
+      seat_id : null,
+      game_id : null
     };
     main.submit = submit;
     main.pointAllOccupiedSeats = pointAllOccupiedSeats;
     main.classChecker = classChecker;
     main.deleteT = deleteT;
-   
+
     fetchAllGames();
     fetchAllSectors();
 
@@ -85,9 +85,9 @@ angular.module('mainPage').component('mainPage', {
         }
       }
       main.ticket = {
-        id: null,
-        seat_id: null,
-        game_id: null
+        id : null,
+        seat_id : null,
+        game_id : null
       };
     }
 
@@ -113,5 +113,6 @@ angular.module('mainPage').component('mainPage', {
       }
       angular.element('#myModal').modal('hide');
     }
-  }]
+
+  } ]
 });

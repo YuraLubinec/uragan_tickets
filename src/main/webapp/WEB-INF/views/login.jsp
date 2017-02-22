@@ -3,7 +3,7 @@
 
 <!DOCTYPE html">
 <html ng-app="ticketApp">
-<head>
+<head>z
 <link href="<c:url value = "/resources/dist/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
 </head>
 <body>

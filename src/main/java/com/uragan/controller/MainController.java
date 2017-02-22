@@ -48,6 +48,7 @@ public class MainController {
    */
   @RequestMapping(value = "/logout", method = RequestMethod.GET)
   public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+    System.out.println("ssasas");
 
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     if (auth != null) {
