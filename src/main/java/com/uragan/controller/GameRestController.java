@@ -2,17 +2,19 @@ package com.uragan.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uragan.model.Game;
@@ -68,14 +70,13 @@ public class GameRestController {
   }
 
   @PostMapping("/main/game")
-  @ResponseStatus(HttpStatus.CREATED)
-  public void createGame(@RequestBody Game game) {
-    gameService.save(game);
-    // Game lastGame = gameService.getLastGame();
-    // List<Subscription> subscriptions =
-    // subscriptionService.findAllBySeasonId(lastGame.getSeason_id());
-    // ticketService.saveTicketsForSubscriptions(lastGame.getId(), subscriptions);
-
+  public ResponseEntity<Game> createGame(@Valid @RequestBody Game game, BindingResult bindingResults) {
+    if (bindingResults.hasErrors()) {
+      return new ResponseEntity<Game>(game, HttpStatus.BAD_REQUEST);
+    } else {
+      gameService.save(game);
+      return new ResponseEntity<Game>(game, HttpStatus.CREATED);
+    }
   }
 
   @GetMapping(value = "/main/game/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

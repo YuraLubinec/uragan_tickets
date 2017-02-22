@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "game")
@@ -40,6 +41,7 @@ public class Game {
     this.id = id;
   }
 
+  @NotBlank
   @Column(name = "first_team")
   public String getFirstTeam() {
     return firstTeam;
@@ -49,6 +51,7 @@ public class Game {
     this.firstTeam = firstTeam;
   }
 
+  @NotBlank
   @Column(name = "second_team")
   public String getSecondTeam() {
     return secondTeam;
@@ -58,6 +61,7 @@ public class Game {
     this.secondTeam = secondTeam;
   }
 
+  @NotBlank
   @Column(name = "date")
   public String getDate() {
     return date;
@@ -67,6 +71,7 @@ public class Game {
     this.date = date;
   }
 
+  @NotBlank
   @Column(name = "time")
   public String getTime() {
     return time;

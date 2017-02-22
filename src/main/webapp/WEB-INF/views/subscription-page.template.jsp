@@ -53,11 +53,11 @@
             </select>
               </div>
             </div>           
-            <div class="">
-              <div class="form-actions">
-                <input type="submit" value="{{!$ctrl.subscription.id ? 'Створити' : 'Оновити'}}" class="btn btn-success btn-sm">
-                <button type="button" ng-click="$ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="subForm.$pristine">Очистити форму</button>
-              </div>
+             <div class="form-group">
+                <div class="btn-group btn-group-justified">
+                  <a class="btn btn-success" ng-click="$ctrl.submit()" ng-disabled="subForm.$invalid">{{!$ctrl.subscription.id ? 'Створити' : 'Оновити'}}</a>
+                  <a class="btn btn-default" ng-click="$ctrl.reset()" class="btn btn-warning" ng-disabled="subForm.$pristine">Очистити форму</a>
+                </div>
             </div>
           </form>
           <div>

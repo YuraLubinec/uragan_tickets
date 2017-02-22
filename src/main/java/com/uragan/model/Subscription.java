@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "subscription")
@@ -30,6 +31,7 @@ public class Subscription {
     this.id = id;
   }
 
+  @NotBlank
   @Column(name = "fullname")
   public String getFullName() {
     return fullName;
