@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan
 @PropertySource("classpath:datasource.properties")
 public class DatabaseConfiguration {
+  
   @Autowired
   Environment environment;
 
