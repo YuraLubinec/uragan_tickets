@@ -20,6 +20,7 @@
         <li><a href="#!/game">Ігри</a></li>
         <li><a href="#!/subscription">Абонементи</a></li>
         <li><a href="#!/sector">Сектори</a></li>
+        <li><a href="#!/login">Увійти</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

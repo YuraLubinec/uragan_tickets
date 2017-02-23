@@ -9,6 +9,7 @@ angular.module('ticketApp').config([ '$locationProvider', '$routeProvider', func
     template : '<subscription-page></subscription-page>'
   }).when('/sector', {
     template : '<sector-page></sector-page>'
-  }).otherwise('/');
-
+  }).when('/login', {
+    template : '<login-page></login-page>'
+  });
 } ]);
