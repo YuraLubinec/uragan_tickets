@@ -29,7 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .successHandler(successHandler).failureHandler(new SimpleUrlAuthenticationFailureHandler())
         .loginProcessingUrl("/loginCheck").usernameParameter("username").passwordParameter("password").and().logout()
         .logoutUrl("/logout").logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
-        .deleteCookies("JSESSIONID").permitAll().and().csrf().disable();
+        .deleteCookies("JSESSIONID").and().csrf().disable();
   }
 
   @Bean
