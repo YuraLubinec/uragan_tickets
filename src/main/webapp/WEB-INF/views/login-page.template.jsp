@@ -1,13 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<form>
-	<div class="form-group">
-		<input id="login" ng-model="$ctrl.username" type="text" class="form-control" required="required" placeholder="login" /> <span ng-show="authenticationError"
-			class="help-block"> Please check your credentials and try again. </span>
-	</div>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-	<div class="form-group">
-		<input id="password" ng-model="$ctrl.password" type="password" class="form-control" required="required" placeholder="password" />
-	</div>
-
-	<button ng-click="$ctrl.login()">Login</button>
-</form>
+<div class="wrapper" ng-if="!$root.access">
+	<form class="form-signin">
+		<h2 class="form-signin-heading text-center">Будь ласка авторизуйтесь</h2>
+		<span ng-show="$ctrl.authenticationError" class="help-block text-center"> Ви ввели невірний логін або пароль, повторіть спробу</span>
+		<input id="login" ng-model="$ctrl.username" type="text" class="form-control" required="required" placeholder="Ім'я користувача" /> 		
+    <input id="password" ng-model="$ctrl.password" type="password" class="form-control" required="required" placeholder="Пароль" />
+		<button ng-click="$ctrl.login()" class="btn btn-primary btn-block">Увійти</button>
+	</form>
+</div>

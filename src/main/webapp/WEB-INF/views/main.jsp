@@ -9,29 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a href="#!/"> <img alt="no photo" class="navbar-brand" ng-src="resources/images/Uragan_Logo.png" />
-        </a>
-      </div>
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#!/">Головна</a></li>
-        <li><a href="#!/game">Ігри</a></li>
-        <li><a href="#!/subscription">Абонементи</a></li>
-        <li><a href="#!/sector">Сектори</a></li>
-        <li><a href="#!/login">Увійти</a></li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href=<c:url value="/logout" /> class="login-logout"> <span class="glyphicon glyphicon-log-out login-logout" aria-hidden="true"></span> Вийти
-        </a></li>
-      </ul>
-    </div>
-  </nav>
-  <div class="container-fluid ng-cloak" ng-cloak>
-    <div ng-view class="view"></div>
-  </div>
+	<navbar></navbar>
+	<div class="container-fluid">
+		<login-page ng-if="!access"></login-page>
+		<div ng-if="access" ng-view class="view"></div>
+	</div>
 </body>
 
 <!-- Bootstrap -->
@@ -41,6 +23,7 @@
 <!-- Page CSS -->
 <link href="<c:url value = "/resources/css/main-page.css" />" rel="stylesheet">
 <link href="<c:url value = "/resources/css/game-list.css" />" rel="stylesheet">
+<link href="<c:url value = "/resources/css/login.css" />" rel="stylesheet">
 
 <!-- jQuery CSS -->
 <link href="<c:url value = "/resources/dist/css/jquery/jquery-ui.css" />" rel="stylesheet">
@@ -64,11 +47,6 @@
 <script src="<c:url value = "/resources/dist/angular/angular-resource.js" />"></script>
 <script src="<c:url value = "/resources/dist/angular/angular-route.js" />"></script>
 
-<!-- Angular JS -->
-<script src="<c:url value = "/resources/dist/angular/angular.js" />"></script>
-<script src="<c:url value = "/resources/dist/angular/angular-resource.js" />"></script>
-<script src="<c:url value = "/resources/dist/angular/angular-route.js" />"></script>
-
 <!-- ui-bootstrap JS -->
 <script src="<c:url value = "/resources/js/ui-bootstrap/ui-bootstrap.js" />"></script>
 
@@ -86,8 +64,9 @@
 <!-- mdPickers -->
 <script src="<c:url value = "/resources/js/angular-material/mdPickers/mdPickers.min.js" />"></script>
 
-<!-- JS -->
+<!-- Angular modules definition -->
 <script src="<c:url value = "/resources/app.module.js" />"></script>
+<script src="<c:url value = "/resources/navbar/navbar.module.js" />"></script>
 <script src="<c:url value = "/resources/login-page/login-page.module.js" />"></script>
 <script src="<c:url value = "/resources/main-page/main-page.module.js" />"></script>
 <script src="<c:url value = "/resources/game-list/game-list.module.js" />"></script>
@@ -96,18 +75,27 @@
 
 <script src="<c:url value = "/resources/app.config.js" />"></script>
 
+<!-- Navbar -->
+<script src="<c:url value = "/resources/navbar/navbar.component.js" />"></script>
+<script src="<c:url value = "/resources/navbar/navbar.service.js" />"></script>
+
+<!-- Login -->
 <script src="<c:url value = "/resources/login-page/login-page.component.js" />"></script>
 <script src="<c:url value = "/resources/login-page/login-page.service.js" />"></script>
 
+<!-- Main Page -->
 <script src="<c:url value = "/resources/main-page/main-page.component.js" />"></script>
 <script src="<c:url value = "/resources/main-page/main-page.service.js" />"></script>
 
+<!-- Games -->
 <script src="<c:url value = "/resources/game-list/game-list.component.js" />"></script>
 <script src="<c:url value = "/resources/game-list/game-list.service.js" />"></script>
 
+<!-- Subscription -->
 <script src="<c:url value = "/resources/subcription-page/subscription-page.component.js" />"></script>
 <script src="<c:url value = "/resources/subcription-page/subscription-page.service.js" />"></script>
 
+<!-- Sector -->
 <script src="<c:url value = "/resources/sector-page/sector-page.component.js" />"></script>
 <script src="<c:url value = "/resources/sector-page/sector-page.service.js" />"></script>
 

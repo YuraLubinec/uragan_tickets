@@ -11,5 +11,5 @@ angular.module('ticketApp').config([ '$locationProvider', '$routeProvider', func
     template : '<sector-page></sector-page>'
   }).when('/login', {
     template : '<login-page></login-page>'
-  });
+  }).otherwise('/');
 } ]);

@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -23,11 +24,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
 
-    http.authorizeRequests().antMatchers("/template/login", "/").permitAll().anyRequest().authenticated()
-        .and().exceptionHandling().authenticationEntryPoint(entryPoint).and().formLogin()
-        .loginPage("/login").successHandler(successHandler).failureHandler(new SimpleUrlAuthenticationFailureHandler())
-        .loginProcessingUrl("/loginCheck").usernameParameter("username").passwordParameter("password").and().csrf()
-        .disable();
+    http.authorizeRequests().antMatchers("/template/login","/template/navbar", "/").permitAll().anyRequest().authenticated().and()
+        .exceptionHandling().authenticationEntryPoint(entryPoint).and().formLogin().loginPage("/login")
+        .successHandler(successHandler).failureHandler(new SimpleUrlAuthenticationFailureHandler())
+        .loginProcessingUrl("/loginCheck").usernameParameter("username").passwordParameter("password").and().logout()
+        .logoutUrl("/logout").logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
+        .deleteCookies("JSESSIONID").permitAll().and().csrf().disable();
   }
 
   @Bean

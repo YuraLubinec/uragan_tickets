@@ -1,17 +1,20 @@
 angular.module('loginPage').component('loginPage', {
   templateUrl : 'template/login',
-  controller : [ 'LoginPageService', function LoginPageController(LoginPageService, $location, $rootScope) {
-   var main = this;
-   main.login = login;
-   main.username = 'username';
-   main.password = 'password';
-    
-    function login(){
-      LoginPageService.login(main.username,main.password).then(function(){
-        console.log('success');
-      }, function(){
-        console.error('error!');
+  controller : [ 'LoginPageService', '$rootScope', function LoginPageController(LoginPageService, $rootScope) {
+    var main = this;
+    main.login = login;
+    main.authenticationError = false;
+    main.username = null;
+    main.password = null;
+
+    function login() {
+      LoginPageService.login(main.username, main.password).then(function() {
+        $rootScope.access = true;
+        main.authenticationError = false;
+      }, function() {
+        main.authenticationError = true;
       })
     }
+
   } ]
-})
+});

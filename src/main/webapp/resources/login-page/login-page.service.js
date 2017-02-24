@@ -1,29 +1,25 @@
 angular.module('loginPage').factory('LoginPageService', [ '$http', '$q', function($http, $q) {
-  var REST_SERVICE_URI = '';
 
   var factory = {
-
-    login : login
-
+    login : login,
   };
   return factory;
-  
-  function login(username, password){
+
+  function login(username, password) {
     var deferred = $q.defer();
-    var data = {
-        params: {
-          username : username,
-          password : password
-        }
-    }     
-    $http.post('loginCheck','',data).then(function(response) {
+    $http({
+      method : 'POST',
+      url : 'loginCheck',
+      headers : {
+        'Content-Type' : 'application/x-www-form-urlencoded'
+      },
+      data : 'username=' + username + '&password=' + password,
+    }).then(function(response) {
       deferred.resolve(response.data);
     }, function(errResponse) {
-      console.error('Error');
       deferred.reject(errResponse);
     });
     return deferred.promise;
   };
-  
- 
+
 } ])
