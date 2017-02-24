@@ -13,7 +13,7 @@ public class MainTemplateController {
 
     return "main-page.template";
   }
-  
+
   @GetMapping("/login")
   public String getLoginPage() {
 
@@ -30,10 +30,15 @@ public class MainTemplateController {
     System.out.println("bla bla SUB".toUpperCase());
     return "subscription-page.template";
   }
-  
+
   @GetMapping("/sector")
   public String getSectorPage() {
     return "sector-page.template";
+  }
+
+  @GetMapping("/navbar")
+  public String getNavigationPanel() {
+    return "navbar.template";
   }
 
 }

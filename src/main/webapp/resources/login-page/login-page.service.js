@@ -1,25 +1,25 @@
-//angular.module('loginPage').factory('LoginPageService', [ '$http', '$q', function($http, $q) {
-//  var REST_SERVICE_URI = 'user';
-//
-//  var factory = {
-//      
-//      fetchSingleUser : fetchSingleUser
-//
-//  };
-//
-//  function fetchSingleUser(headers) {
-//    var deferred = $q.defer();
-//    $http.get(REST_SERVICE_URI, {
-//      headers : headers
-//    }).then(function(response) {
-//      deferred.resolve(response.data);
-//    }, function(errResponse) {
-//      console.error('Error while saving ticket');
-//      deferred.resolve(errResponse)
-//    });
-//    return deferred.promise;
-//  }
-//
-//
-//  return factory;
-//} ])
+angular.module('loginPage').factory('LoginPageService', [ '$http', '$q', function($http, $q) {
+
+  var factory = {
+    login : login,
+  };
+  return factory;
+
+  function login(username, password) {
+    var deferred = $q.defer();
+    $http({
+      method : 'POST',
+      url : 'loginCheck',
+      headers : {
+        'Content-Type' : 'application/x-www-form-urlencoded'
+      },
+      data : 'username=' + username + '&password=' + password,
+    }).then(function(response) {
+      deferred.resolve(response.data);
+    }, function(errResponse) {
+      deferred.reject(errResponse);
+    });
+    return deferred.promise;
+  };
+
+} ])

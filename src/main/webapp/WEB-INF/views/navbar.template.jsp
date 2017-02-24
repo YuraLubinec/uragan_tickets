@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a href="#!/"> <img alt="no photo" class="navbar-brand" ng-src="resources/images/Uragan_Logo.png" />
+			</a>
+		</div>
+		<ul class="nav navbar-nav" ng-if="$root.access">
+			<li class="active"><a href="#!/">Головна</a></li>
+			<li><a href="#!/game">Ігри</a></li>
+			<li><a href="#!/subscription">Абонементи</a></li>
+			<li><a href="#!/sector">Сектори</a></li>
+		</ul>
+
+		<ul class="nav navbar-nav navbar-right" ng-if="$root.access">
+			<li><a ng-click="$ctrl.userLogout()"><span class="glyphicon glyphicon-log-out login-logout" aria-hidden="true"></span> Вийти </a></li>
+		</ul>
+	</div>
+</nav>
