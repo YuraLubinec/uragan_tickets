@@ -12,6 +12,12 @@ angular.module('gameList').component('gameList', {
         season_id: '',
       }
 
+      main.sectorCountTicket = {
+        nameSector: '',
+        countTickets: '',
+        summ: '',
+      }
+
       main.dateGame = new Date();
       main.timeGame = new Date();
       main.minDate = new Date(
@@ -26,16 +32,25 @@ angular.module('gameList').component('gameList', {
       main.gameList = [];
       main.seasonList = [];
 
+      main.tickets = [];
+      main.seats = [];
+      main.sectors = [];
+
+      main.sectorsWithCountTickets = [];
+      $scope.summByGame = 0;
+
       main.submit = submit;
       main.edit = edit;
       main.remove = remove;
       main.reset = reset;
+      main.fetchTicketsByIdGame = fetchTicketsByIdGame;
 
       main.paginList = [];
 
       $scope.currentPage = 1, $scope.numPerPage = 10, $scope.maxSize = 5;
 
       fetchAllSeasons();
+      fetchAllSectors();
 
       function fetchAllGamesBySeason(id) {
         GameListService.fetchAllGamesBySeason(id)
@@ -48,11 +63,45 @@ angular.module('gameList').component('gameList', {
           );
       }
 
+      function fetchSeatsIdTicket(data) {
+        GameListService.fetchSeatsIdTicket(data)
+          .then(
+            function(d) {
+              main.seats = d;
+              createSectorWithCountTickeet();
+              console.log(main.sectorsWithCountTickets.length);
+              console.log(main.sectorsWithCountTickets);
+            },
+            function(errResponse) {}
+          );
+      }
+
+      function fetchTicketsByIdGame(id) {
+        GameListService.fetchTicketsByIdGame(id)
+          .then(
+            function(d) {
+              main.tickets = d;
+              fetchSeatsIdTicket(main.tickets);
+            },
+            function(errResponse) {}
+          );
+      }
+
       function fetchAllSeasons() {
         GameListService.fetchAllSeasons()
           .then(
             function(d) {
               main.seasonList = d;
+            },
+            function(errResponse) {}
+          );
+      }
+
+      function fetchAllSectors() {
+        GameListService.fetchAllSectors()
+          .then(
+            function(d) {
+              main.sectors = d;
             },
             function(errResponse) {}
           );
@@ -115,6 +164,39 @@ angular.module('gameList').component('gameList', {
         if (main.currentSeason != null) {
           fetchAllGamesBySeason(main.currentSeason.id);
         }
+      }
+
+      function createSectorWithCountTickeet() {
+        main.sectorsWithCountTickets = [];
+        $scope.summByGame = 0;
+        for (var i = 0; i < main.sectors.length; i++) {
+          var countTicket = 0;
+          for (var j = 0; j < main.seats.length; j++) {
+            if (main.seats[j].sector_id == main.sectors[i].id) {
+              countTicket++;
+            }
+          }
+          main.sectorCountTicket.nameSector = main.sectors[i].name;
+          main.sectorCountTicket.countTickets = countTicket;
+          main.sectorCountTicket.summ = countTicket * main.sectors[i].price;
+          main.sectorsWithCountTickets.push(main.sectorCountTicket);
+
+          $scope.summByGame += main.sectorCountTicket.summ
+          main.sectorCountTicket = {
+            nameSector: '',
+            countTickets: '',
+            summ: '',
+          }
+        }
+      }
+
+      $scope.getReportForGame = function(id) {
+        main.tickets = [];
+        main.seats = [];
+        main.sectorsWithCountTickets = [];
+        $scope.summByGame = 0;
+
+        fetchTicketsByIdGame(id);
       }
 
       function getGamesAfterChange() {

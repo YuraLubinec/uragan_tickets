@@ -15,7 +15,7 @@ public class SeatDAOImpl extends AbstractDAO<Integer, Seat> implements SeatDAO {
   public List<Seat> findAllSeats() {
     Criteria crit = createEntityCriteria();
     crit.addOrder(Order.desc("id"));
-    return (List<Seat>) createEntityCriteria().list();
+    return (List<Seat>) crit.list();
   }
 
   @Override
@@ -27,5 +27,4 @@ public class SeatDAOImpl extends AbstractDAO<Integer, Seat> implements SeatDAO {
   public void save(Seat seat) {
     persist(seat);
   }
-
 }

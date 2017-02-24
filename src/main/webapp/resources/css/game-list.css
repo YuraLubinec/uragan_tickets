@@ -1,59 +1,54 @@
 
-.table-th-td{
+game-list .table-th-td{
    text-align: center;
    color: white;  
 }
 
 
-.add-padding-left{
+game-list .add-padding-left{
 	padding-left: 5px;
 }
-.not-padding-right{
+game-list .not-padding-right{
 	padding-right: 0px;
 }
 
-.thA {
+game-list .thA {
     color: #f3f5f7;
 }
 
-a:hover { 
+game-list  a:hover { 
    color: rgb(66, 139, 202);
 }
 
-.modal-dialog {
+game-list  .modal-dialog {
     text-align: left !important;
 }
 
 
-.md-datepicker-calendar-pane{
+game-list  .md-datepicker-calendar-pane{
   z-index: 1250 !important;
 }
-.md-dialog-container {
+game-list .md-dialog-container {
     z-index: 1250 !important;
 }
 
-.md-block{
+game-list .md-block{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
     margin-left: 0px !important;
 }
-.md-icon-float{
+game-list .md-icon-float{
     margin-bottom: 0px  !important;
     margin-top: 0px  !important;
 }
-.md-icon-button{
+game-list .md-icon-button{
     margin-top: 0px !important;	
 }
 
-md-input-container:not(.md-input-has-value) input:not(:focus), md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-ampm-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-day-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-hour-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-millisecond-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-minute-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-month-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-second-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-text, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-week-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-year-field {
+game-list md-input-container:not(.md-input-has-value) input:not(:focus), md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-ampm-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-day-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-hour-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-millisecond-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-minute-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-month-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-second-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-text, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-week-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-year-field {
     color: rgba(0,0,0,0.87) !important;
 }
 
-
-
-.has-error{
+game-list .has-error{
   color:red;
-}
-input.ng-invalid:focus {
-  border-color: #FF0000 !important;
 }

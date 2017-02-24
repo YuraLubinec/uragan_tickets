@@ -24,6 +24,7 @@
 <link href="<c:url value = "/resources/css/main-page.css" />" rel="stylesheet">
 <link href="<c:url value = "/resources/css/game-list.css" />" rel="stylesheet">
 <link href="<c:url value = "/resources/css/login.css" />" rel="stylesheet">
+<link href="<c:url value = "/resources/css/subscription-page.css" />" rel="stylesheet">
 
 <!-- jQuery CSS -->
 <link href="<c:url value = "/resources/dist/css/jquery/jquery-ui.css" />" rel="stylesheet">

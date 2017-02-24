@@ -64,6 +64,33 @@
       </div>
     </div>
   </div>
+  
+<!--   Dialog Report of Game -->
+
+  <div class="modal modal fade" id="modalReport" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"> Звіт проданих квитків</h4>
+        </div>
+        <div class="modal-body">
+
+          <div class="container-fluid" ng-model = "$ctrl.summByGame">
+          <div ng-repeat="sector in $ctrl.sectors">  
+          <h3>Сектор: {{sector.name}} <small> ціна : {{sector.price}}</small></h3>
+            <div ng-repeat = "sectorTicket in $ctrl.sectorsWithCountTickets" ng-if ="sector.name == sectorTicket.nameSector">
+                <p> кількість проданих квитеів : {{sectorTicket.countTickets}} </p>
+                <p> cума :{{sectorTicket.summ}} </p>
+            </div>
+          <hr>
+          </div>
+          <h3>Сума по грі : {{summByGame}}</h3> 
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <div class="col-lg-2 col-md-2 add-padding-top  add-padding-left">
@@ -88,10 +115,10 @@
               <tr>
                 <th class="col-md-2 table-th-td">ГОСПОДАРІ</th>
                 <th class="col-md-2 table-th-td">ГОСТІ</th>
-                <th class="col-md-2 table-th-td">ДАТА</th>
-                <th class="col-md-2 table-th-td">ЧАС</th>
+                <th class="col-md-1 table-th-td">ДАТА</th>
+                <th class="col-md-1 table-th-td">ЧАС</th>
                 <th class="col-md-2 table-th-td">СЕЗОН</th>
-                <th class="col-md-2 table-th-td" width="20%"></th>
+                <th class="col-md-4 table-th-td" width="20%"></th>
               </tr>
             </thead>
             <tbody>
@@ -105,8 +132,12 @@
                   <span ng-bind="season.years"></span>
                 </td>
                 <td>
-                  <button type="button" ng-click="$ctrl.edit(game.id)" data-toggle="modal" data-target="#myModal" class="btn btn-success custom-width">Редагувати</button>
-                  <button type="button" ng-click="$ctrl.remove(game.id)" class="btn btn-danger custom-width">Видалити</button>
+               
+                 <div class="btn-group btn-group-justified">
+                  <a class="btn btn-primary" ng-click="getReportForGame(game.id)" data-toggle="modal" data-target="#modalReport">Звіт</a>
+                  <a class="btn btn-success" ng-click="$ctrl.edit(game.id)" data-toggle="modal" data-target="#myModal" class="btn btn-warning">Редагувати</a>
+                  <a class="btn btn-danger"  ng-click="$ctrl.remove(game.id)" class="btn btn-warning">Видалити</a>
+                </div>
                 </td>
               </tr>
             </tbody>

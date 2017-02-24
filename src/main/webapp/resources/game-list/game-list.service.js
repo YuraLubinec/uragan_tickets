@@ -4,15 +4,54 @@ angular.module('gameList').factory('GameListService', ['$http', '$q', function($
 
   var factory = {
 
-    fetchAllSeasons: fetchAllSeasons,
+    
+    fetchSeatsIdTicket:    fetchSeatsIdTicket,
+    fetchTicketsByIdGame:  fetchTicketsByIdGame,
+    fetchAllSeasons:       fetchAllSeasons,
+    fetchAllSectors: fetchAllSectors,
     fetchAllGamesBySeason: fetchAllGamesBySeason,
-    createGame: createGame,
-    updateGame: updateGame,
-    deleteGame: deleteGame,
+    createGame:            createGame,
+    updateGame:            updateGame,
+    deleteGame:            deleteGame,
   };
 
   return factory;
 
+  
+  
+  
+  function fetchSeatsIdTicket(arr) {
+    var deferred = $q.defer();
+    $http({
+      method: 'POST',
+      url: REST_SERVICE_URI + "getSeatsIdTicket",
+      data: arr }).then(
+        function(response) {
+          deferred.resolve(response.data);
+        },
+        function(errResponse) {
+
+          deferred.reject(errResponse);
+        }
+      );
+    return deferred.promise;
+  }
+
+  function fetchTicketsByIdGame(id) {
+    var deferred = $q.defer();
+    $http.get(REST_SERVICE_URI + "ticketsGame/" + id)
+      .then(
+        function(response) {
+          deferred.resolve(response.data);
+        },
+        function(errResponse) {
+
+          deferred.reject(errResponse);
+        }
+      );
+    return deferred.promise;
+  }
+  
   function fetchAllGamesBySeason(id) {
     var deferred = $q.defer();
     $http.get(REST_SERVICE_URI + "seasonGames/" + id)
@@ -31,6 +70,21 @@ angular.module('gameList').factory('GameListService', ['$http', '$q', function($
   function fetchAllSeasons() {
     var deferred = $q.defer();
     $http.get(REST_SERVICE_URI + "season")
+      .then(
+        function(response) {
+          deferred.resolve(response.data);
+        },
+        function(errResponse) {
+
+          deferred.reject(errResponse);
+        }
+      );
+    return deferred.promise;
+  }
+  
+  function fetchAllSectors() {
+    var deferred = $q.defer();
+    $http.get(REST_SERVICE_URI + "sectors")
       .then(
         function(response) {
           deferred.resolve(response.data);

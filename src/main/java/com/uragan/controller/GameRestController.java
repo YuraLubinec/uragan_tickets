@@ -15,12 +15,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uragan.model.Game;
 import com.uragan.model.Season;
+import com.uragan.model.Seat;
+import com.uragan.model.Sector;
+import com.uragan.model.Ticket;
 import com.uragan.sevice.GameService;
 import com.uragan.sevice.SeasonService;
+import com.uragan.sevice.SeatService;
+import com.uragan.sevice.SectorService;
 import com.uragan.sevice.SubscriptionService;
 import com.uragan.sevice.TicketService;
 
@@ -35,6 +41,10 @@ public class GameRestController {
   SubscriptionService subscriptionService;
   @Autowired
   TicketService ticketService;
+  @Autowired
+  SeatService seatService;
+  @Autowired
+  SectorService sectorService;
 
   @GetMapping("/main/game")
   public ResponseEntity<List<Game>> listAllGames() {
@@ -86,6 +96,36 @@ public class GameRestController {
       return new ResponseEntity<Game>(HttpStatus.NOT_FOUND);
     }
     return new ResponseEntity<Game>(game, HttpStatus.OK);
+  }
+
+  @GetMapping(value = "/main/game/ticketsGame/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<List<Ticket>> getTicketsByIdGame(@PathVariable("id") int id) {
+
+    List<Ticket> listTicket = ticketService.findTicketsByIdGame(id);
+    if (listTicket.isEmpty()) {
+      return new ResponseEntity<List<Ticket>>(HttpStatus.NO_CONTENT);
+    } else {
+      return new ResponseEntity<List<Ticket>>(listTicket, HttpStatus.OK);
+    }
+  }
+
+  @GetMapping(value = "/main/game/sectors")
+  public ResponseEntity<List<Sector>> getAllSectors() {
+
+    List<Sector> listSectors = sectorService.findAllSector();
+    if (listSectors.isEmpty()) {
+      return new ResponseEntity<List<Sector>>(HttpStatus.NO_CONTENT);
+    } else {
+      return new ResponseEntity<List<Sector>>(listSectors, HttpStatus.OK);
+    }
+  }
+
+  @PostMapping(value = "/main/game/getSeatsIdTicket", produces = MediaType.APPLICATION_JSON_VALUE)
+  @ResponseBody
+  public ResponseEntity<List<Seat>> getSeatsIdTicket(@RequestBody List<Ticket> data) {
+    List<Seat> listSeat = seatService.findSeatsByTicketId(data);
+
+    return new ResponseEntity<List<Seat>>(listSeat, HttpStatus.OK);
   }
 
   @DeleteMapping("/main/game/{id}")
