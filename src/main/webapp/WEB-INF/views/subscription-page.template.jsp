@@ -70,7 +70,7 @@
 
 
 <div class="col-lg-2 col-md-2 add-padding-top add-padding-left">
-  <button id="idSubModal" data-toggle="modal" data-target="#myModal" class="btn btn-primary form-control"> Cтворити абонемент </button>
+  <button id="idSubModal" data-toggle="modal" data-target="#myModal" class="btn btn-primary form-control" ng-click="$ctrl.reset()"> Cтворити абонемент </button>
 </div>
 <div class="col-lg-4 col-lg-offset-6 col-md-4 col-lg-offset-2 add-padding-top">
   <select class="form-control" ng-model="$ctrl.currentSeason" ng-options="season.years for season in $ctrl.seasonList" ng-change="getSubOfSeason()">

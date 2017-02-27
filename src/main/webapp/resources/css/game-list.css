@@ -25,10 +25,10 @@ game-list  .modal-dialog {
 }
 
 
-game-list  .md-datepicker-calendar-pane{
+.md-datepicker-calendar-pane{
   z-index: 1250 !important;
 }
-game-list .md-dialog-container {
+.md-dialog-container {
     z-index: 1250 !important;
 }
 

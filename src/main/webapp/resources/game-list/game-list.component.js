@@ -18,7 +18,7 @@ angular.module('gameList').component('gameList', {
         summ: '',
       }
 
-      main.dateGame = new Date();
+      main.dateGame = new Date;
       main.timeGame = new Date();
       main.minDate = new Date(
         this.dateGame.getFullYear(),
@@ -26,7 +26,6 @@ angular.module('gameList').component('gameList', {
         this.dateGame.getDate()
       );
 
-      main.currentSelectSeason = null;
       main.currentSeason = null;
       main.seasonName = '';
       main.gameList = [];
@@ -43,6 +42,7 @@ angular.module('gameList').component('gameList', {
       main.edit = edit;
       main.remove = remove;
       main.reset = reset;
+      
       main.fetchTicketsByIdGame = fetchTicketsByIdGame;
 
       main.paginList = [];
@@ -69,8 +69,6 @@ angular.module('gameList').component('gameList', {
             function(d) {
               main.seats = d;
               createSectorWithCountTickeet();
-              console.log(main.sectorsWithCountTickets.length);
-              console.log(main.sectorsWithCountTickets);
             },
             function(errResponse) {}
           );
@@ -116,9 +114,6 @@ angular.module('gameList').component('gameList', {
       }
 
       function appropriation() {
-        if (main.currentSelectSeason != null) {
-          main.game.season_id = main.currentSelectSeason.id;
-        }
         main.game.date = defoultFormateDate(main.dateGame);
         main.game.time = defoultFormateTime(main.timeGame);
 
@@ -158,6 +153,44 @@ angular.module('gameList').component('gameList', {
             break;
           }
         }
+        getDateGame(main.game.date);
+        getTimeGame(main.game.date, main.game.time);
+      }
+
+      $scope.selectedSeason = function(idGame) {
+        console.log("season game : " + idGame)
+        if (idGame == null) {
+          return "Оберіть сезон"
+        } else {
+          for (var i = 0; i < main.gameList.length; i++) {
+            if (main.gameList[i].id === id) {
+              return getSeason(main.gameList[i].season_id);
+              break;
+            }
+          }
+        }
+      }
+
+      function getSeason(seasonId) {
+        console.log("get Season")
+        for (var i = 0; i < main.seasonList.length; i++) {
+          if (main.seasonList[i].id === id) {
+            return main.seasonList[i];
+            break;
+          }
+        }
+      }
+
+      function getDateGame(dateGame) {
+        var date = new Date(dateGame);
+        main.dateGame = date;
+      }
+
+      function getTimeGame(dateGame, timeGame) {
+        var date = new Date(dateGame);
+        var time = timeGame.split(":");
+        date.setHours(time[0], time[1]);
+        main.timeGame = date;
       }
 
       $scope.getGamesOfSeason = function() {
@@ -213,13 +246,19 @@ angular.module('gameList').component('gameList', {
       }
 
       function defoultFormateDate(date) {
-        var formatDate = date;
-        formatDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 1, 0, 0);
-        return formatDate.toLocaleDateString()
+        return moment(date).format("YYYY-MM-DD");
       }
 
       function defoultFormateTime(date) {
-        return date.getHours() + ":" + date.getMinutes();
+        if (date.getMinutes() < 10)
+          return addZero(date.getHours()) + ":" + addZero(date.getMinutes());
+      }
+
+      function addZero(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
       }
 
       function reset() {
@@ -254,13 +293,17 @@ angular.module('gameList').component('gameList', {
   })
   .config(function($mdDateLocaleProvider) {
     // Ukrainian  localization.
-    $mdDateLocaleProvider.months = ['Cічень', 'Лютий', 'Березень', 'Квітень', 'Траваень', 'Червень', 'Липень',
+    $mdDateLocaleProvider.months = ['Cічень', 'Лютий', 'Березень', 'Квітень', 'Траваень', 'Червень',
+      'Липень',
       'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'
     ];
-    $mdDateLocaleProvider.shortMonths = ['січ', 'лют', 'бер', 'квіт', 'трав', 'черв', 'лип', 'серп', 'верес', 'жовт',
+    $mdDateLocaleProvider.shortMonths = ['січ', 'лют', 'бер', 'квіт', 'трав', 'черв', 'лип', 'серп',
+      'верес', 'жовт',
       'лист', 'груд'
     ];
-    $mdDateLocaleProvider.days = ['неділя', 'понеділок', 'вівторок', 'середа', 'четвер', 'пятниця', 'субота'];
+    $mdDateLocaleProvider.days = ['неділя', 'понеділок', 'вівторок', 'середа', 'четвер', 'пятниця',
+      'субота'
+    ];
     $mdDateLocaleProvider.shortDays = ['Нд', 'Пн', 'Вів', 'Сер', 'Чет', 'Пн', 'Суб'];
 
     // Can change week display to start on Monday.
