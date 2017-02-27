@@ -1,11 +1,18 @@
 'use strict'
 angular.module('navbar').component('navbar', {
-  templateUrl: 'template/navbar',
-  controller: ['NavbarService','$rootScope', function NavbarController(NavbarService,$rootScope){
+  templateUrl : 'template/navbar',
+  controller : [ 'NavbarService', '$rootScope', '$interval', function NavbarController(NavbarService, $rootScope, $interval) {
     var main = this;
-    $rootScope.access=null;
+    $rootScope.access = null;
     this.userLogout = userLogout;
+    this.checkAuthority = checkAuthority;
     checkAuthority();
+
+    $interval(function() {
+      if ($rootScope.access) {
+        checkAuthority();
+      }
+    }, 1810000);
 
     function checkAuthority() {
       NavbarService.checkAuthority().then(function(response) {
@@ -23,5 +30,5 @@ angular.module('navbar').component('navbar', {
         console.error('error in logout');
       })
     }
-  }]
+  } ]
 });
