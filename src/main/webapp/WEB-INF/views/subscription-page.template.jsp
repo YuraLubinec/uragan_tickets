@@ -22,7 +22,7 @@
             <div class="form-group">
               <label class="control-lable" for="file">Сезон</label>
               <div class="">
-                <select class="form-control" class="form-control" ng-model="$ctrl.currentSelectSeason" ng-options="season.years for season in $ctrl.seasonList" required="required">
+                <select class="form-control" class="form-control" ng-model="$ctrl.subscription.season_id" ng-options="season.id as season.years for season in $ctrl.seasonList" required="required">
             <option value="" disabled>Оберіть сезон</option>
             </select>
               </div>

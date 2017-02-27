@@ -78,14 +78,14 @@
 
         <div class="container-fluid" ng-model="$ctrl.summByGame">
           <div ng-repeat="sector in $ctrl.sectors">
-            <h3>Сектор: {{sector.name}} <small> ціна : {{sector.price}}</small></h3>
+            <h3>Сектор: {{sector.name}} <small> ціна : {{sector.price}} грн.</small></h3>
             <div ng-repeat="sectorTicket in $ctrl.sectorsWithCountTickets" ng-if="sector.name == sectorTicket.nameSector">
-              <p> кількість проданих квитеів : {{sectorTicket.countTickets}} </p>
-              <p> cума :{{sectorTicket.summ}} </p>
+              <p> кількість проданих квитків : {{sectorTicket.countTickets}} шт. </p>
+              <p> cума : {{sectorTicket.summ}} грн. </p>
             </div>
             <hr>
           </div>
-          <h3>Сума по грі : {{summByGame}}</h3>
+          <h3>Сума по грі : {{summByGame}} грн.</h3>
         </div>
 
       </div>

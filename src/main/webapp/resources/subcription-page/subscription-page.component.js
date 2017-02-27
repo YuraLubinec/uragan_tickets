@@ -22,7 +22,6 @@ angular.module('subscriptionPage').component('subscriptionPage', {
 
       main.paginList = [];
 
-      main.currentSelectSeason = null;
       main.currentSelectSector = null;
       main.currentSelectRow = null;
       main.currentSelectPlace = null;
@@ -146,8 +145,6 @@ angular.module('subscriptionPage').component('subscriptionPage', {
           seat_id: '',
           season_id: ''
         };
-        
-        main.currentSelectSeason = null;
         main.currentSelectSector = null;
         main.currentSelectRow = null;
         main.currentSelectPlace = null;
@@ -156,10 +153,7 @@ angular.module('subscriptionPage').component('subscriptionPage', {
       }
 
       function appropriationId(){
-        if (main.currentSelectSeason != null && main.currentSelectPlace != null) {
-          main.subscription.season_id = main.currentSelectSeason.id;
           main.subscription.seat_id = main.currentSelectPlace.id;
-        }
       }
 
       $scope.getSubOfSeason = function() {
@@ -192,13 +186,13 @@ angular.module('subscriptionPage').component('subscriptionPage', {
       $scope.getAvailablePlace = function() {
         main.placeList = [];
         for (var i = 0; i < main.seatList.length; i++) {
-          if (main.seatList[i].sector_id == main.currentSelectSector.id && main.seatList[i].row === main.currentSelectRow
+          if (main.seatList[i].sector_id == main.subscription.season_id && main.seatList[i].row === main.currentSelectRow
             .row) {
             var isHaveId = 0;
             for (var j = 0; j < main.subscriptionALLList.length; j++) {
-              if (main.subscriptionALLList[j].season_id === main.currentSelectSeason.id) {
+              if (main.subscriptionALLList[j].season_id === main.subscription.season_id) {
                 if (main.subscriptionALLList[j].seat_id === main.seatList[i].id) {
-                  isHaveId ++;
+                  isHaveId++;
                 }
               }
             }
