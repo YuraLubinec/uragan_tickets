@@ -1,0 +1,20 @@
+<div class="bordered col-md-12 col-lg-12 text-center">
+  <table class="col-lg-12 col-md-12">
+    <tr>
+      <td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==3">
+        <button id="{{seat.id}}" data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
+      </td>
+    </tr>
+    <tr>
+      <td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==2">
+        <button id="{{seat.id}}" data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
+      </td>
+    </tr>
+    <tr>
+      <td ng-repeat="seat in sector.seats | orderBy: 'id'" ng-if="seat.row==1">
+        <button id="{{seat.id}}" data-toggle="modal" data-target="#myModal" ng-click="($ctrl.seat_obj=seat)&&($ctrl.sector_name=sector.name)">{{seat.place}}</button>
+      </td>
+    </tr>
+  </table>
+  <p>{{sector.name}}-{{sector.price}} грн</p>
+</div>
