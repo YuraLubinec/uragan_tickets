@@ -1,4 +1,5 @@
 body {
+	height: auto !important;
 	background-image: url("../images/fonSale.jpeg");
 	background-size: 100%;
 	background-attachment: fixed;
