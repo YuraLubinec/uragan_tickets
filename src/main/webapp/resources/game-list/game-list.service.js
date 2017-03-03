@@ -1,6 +1,6 @@
   angular.module('gameList').factory('GameListService', ['$http', '$q', function($http, $q) {
 
-  var REST_SERVICE_URI = 'main' + '/game/';
+  var REST_SERVICE_URI = 'main/game/';
 
   var factory = {
 

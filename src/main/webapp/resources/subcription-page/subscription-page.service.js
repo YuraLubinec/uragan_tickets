@@ -1,5 +1,5 @@
 angular.module('subscriptionPage').factory('SubscriptionPageService',['$http', '$q', function($http,$q){
-  var REST_SERVICE_URI = 'main' + '/subscription/';
+  var REST_SERVICE_URI = 'main/subscription/';
   
   var factory = {
       fetchAllSubBySeasonId : fetchAllSubBySeasonId,
