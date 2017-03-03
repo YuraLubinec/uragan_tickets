@@ -1,7 +1,7 @@
 'use strict'
 angular.module('mainPage').component('mainPage', {
   templateUrl : 'template/main/',
-  controller : [ 'MainPageService', function MainPageController(MainPageService) {
+  controller : [ 'MainPageService', '$window', function MainPageController(MainPageService, $window) {
     var main = this;
     main.gameId = null;
     main.seatList = [];
@@ -67,7 +67,9 @@ angular.module('mainPage').component('mainPage', {
     }
 
     function createTicket(ticket) {
-      MainPageService.createTicket(ticket).then(fetchAllGames, function(errResponse) {
+      MainPageService.createTicket(ticket).then(function() {
+        fetchAllGames();
+      }, function(errResponse) {
         console.error('Error while saving ticket');
       });
     }
