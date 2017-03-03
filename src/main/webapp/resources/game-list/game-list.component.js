@@ -158,7 +158,6 @@ angular.module('gameList').component('gameList', {
       }
 
       $scope.selectedSeason = function(idGame) {
-        console.log("season game : " + idGame)
         if (idGame == null) {
           return "Оберіть сезон"
         } else {
@@ -172,7 +171,6 @@ angular.module('gameList').component('gameList', {
       }
 
       function getSeason(seasonId) {
-        console.log("get Season")
         for (var i = 0; i < main.seasonList.length; i++) {
           if (main.seasonList[i].id === id) {
             return main.seasonList[i];
