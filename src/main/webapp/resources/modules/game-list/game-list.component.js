@@ -248,8 +248,11 @@ angular.module('gameList').component('gameList', {
       }
 
       function defoultFormateTime(date) {
-        if (date.getMinutes() < 10)
+        if (date.getMinutes() < 10){
           return addZero(date.getHours()) + ":" + addZero(date.getMinutes());
+        }else{
+          return date.getHours() + ":" + date.getMinutes();
+        }
       }
 
       function addZero(i) {
