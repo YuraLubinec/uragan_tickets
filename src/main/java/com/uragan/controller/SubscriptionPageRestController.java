@@ -27,22 +27,25 @@ import com.uragan.sevice.SectorService;
 import com.uragan.sevice.SubscriptionService;
 
 @RestController
-public class SubscriptionRestController {
+public class SubscriptionPageRestController {
 
   @Autowired
-  SubscriptionService subService;
+  private SubscriptionService subService;
+  
   @Autowired
-  SeasonService seasonService;
+  private SeasonService seasonService;
+  
   @Autowired
-  SectorService sectorService;
+  private SectorService sectorService;
+  
   @Autowired
-  SeatService seatService;
-
+  private SeatService seatService;
+  
   @GetMapping("/main/subscription/seasonSub/{id}")
   public ResponseEntity<List<Subscription>> listAllSubBySeasonId(@PathVariable("id") int id) {
+   
     List<Subscription> sub = subService.findAllBySeasonId(id);
     if (sub.isEmpty()) {
-
       return new ResponseEntity<List<Subscription>>(HttpStatus.NO_CONTENT);
     }
     return new ResponseEntity<List<Subscription>>(sub, HttpStatus.OK);
@@ -52,9 +55,7 @@ public class SubscriptionRestController {
   public ResponseEntity<List<Subscription>> listAllSubscriptions() {
 
     List<Subscription> subs = subService.findAllSubscription();
-
     if (subs.isEmpty()) {
-
       return new ResponseEntity<List<Subscription>>(HttpStatus.NO_CONTENT);
     }
     return new ResponseEntity<List<Subscription>>(subs, HttpStatus.OK);
@@ -62,6 +63,7 @@ public class SubscriptionRestController {
 
   @GetMapping("/main/subscription/seats")
   public ResponseEntity<List<Seat>> listAllSeats() {
+    
     List<Seat> seats = seatService.findAllSeats();
     if (seats.isEmpty()) {
       return new ResponseEntity<List<Seat>>(HttpStatus.NO_CONTENT);
@@ -71,6 +73,7 @@ public class SubscriptionRestController {
 
   @GetMapping("/main/subscription/sectors")
   public ResponseEntity<List<Sector>> listAllSectors() {
+    
     List<Sector> sectors = sectorService.findAllSector();
     if (sectors.isEmpty()) {
       return new ResponseEntity<List<Sector>>(HttpStatus.NO_CONTENT);
@@ -80,6 +83,7 @@ public class SubscriptionRestController {
 
   @GetMapping("/main/subscription/season")
   public ResponseEntity<List<Season>> listAllSeasons() {
+    
     List<Season> seasons = seasonService.findAllSeason();
     if (seasons.isEmpty()) {
       return new ResponseEntity<List<Season>>(HttpStatus.NO_CONTENT);
@@ -111,6 +115,7 @@ public class SubscriptionRestController {
 
   @DeleteMapping("/main/subscription/{id}")
   public ResponseEntity<Subscription> deleteSubsription(@PathVariable("id") int id) {
+    
     Subscription sub = subService.findById(id);
     if (sub == null) {
       return new ResponseEntity<Subscription>(HttpStatus.NOT_FOUND);
@@ -121,12 +126,11 @@ public class SubscriptionRestController {
 
   @PutMapping("/main/subscription/{id}")
   public ResponseEntity<Subscription> updateSub(@PathVariable("id") int id, @RequestBody Subscription subscription) {
+   
     Subscription currentSubscription = subService.findById(id);
-
     if (currentSubscription == null) {
       return new ResponseEntity<Subscription>(HttpStatus.NOT_FOUND);
     }
-
     subService.update(subscription);
     return new ResponseEntity<Subscription>(subscription, HttpStatus.OK);
   }

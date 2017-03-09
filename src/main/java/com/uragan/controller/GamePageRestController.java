@@ -31,26 +31,31 @@ import com.uragan.sevice.SubscriptionService;
 import com.uragan.sevice.TicketService;
 
 @RestController
-public class GameRestController {
+public class GamePageRestController {
 
   @Autowired
   GameService gameService;
+
   @Autowired
   SeasonService seasonService;
+
   @Autowired
   SubscriptionService subscriptionService;
+
   @Autowired
   TicketService ticketService;
+
   @Autowired
   SeatService seatService;
+
   @Autowired
   SectorService sectorService;
 
   @GetMapping("/main/game")
   public ResponseEntity<List<Game>> listAllGames() {
+   
     List<Game> games = gameService.findAllGames();
     if (games.isEmpty()) {
-
       return new ResponseEntity<List<Game>>(HttpStatus.NO_CONTENT);
     }
     return new ResponseEntity<List<Game>>(games, HttpStatus.OK);
@@ -58,8 +63,8 @@ public class GameRestController {
 
   @GetMapping("/main/game/season")
   public ResponseEntity<List<Season>> listAllSeasons() {
+   
     List<Season> seasons = seasonService.findAllSeason();
-
     if (seasons.isEmpty()) {
 
       return new ResponseEntity<List<Season>>(HttpStatus.NO_CONTENT);
@@ -71,9 +76,7 @@ public class GameRestController {
   public ResponseEntity<List<Game>> listAllGamesBySeasonId(@PathVariable("id") int id) {
 
     List<Game> games = gameService.findGamesBySeasonId(id);
-
     if (games.isEmpty()) {
-
       return new ResponseEntity<List<Game>>(HttpStatus.NO_CONTENT);
     }
     return new ResponseEntity<List<Game>>(games, HttpStatus.OK);
@@ -81,6 +84,7 @@ public class GameRestController {
 
   @PostMapping("/main/game")
   public ResponseEntity<Game> createGame(@Valid @RequestBody Game game, BindingResult bindingResults) {
+   
     if (bindingResults.hasErrors()) {
       return new ResponseEntity<Game>(game, HttpStatus.BAD_REQUEST);
     } else {
@@ -91,6 +95,7 @@ public class GameRestController {
 
   @GetMapping(value = "/main/game/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Game> getGame(@PathVariable("id") int id) {
+   
     Game game = gameService.findById(id);
     if (game == null) {
       return new ResponseEntity<Game>(HttpStatus.NOT_FOUND);
@@ -123,8 +128,8 @@ public class GameRestController {
   @PostMapping(value = "/main/game/getSeatsIdTicket", produces = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
   public ResponseEntity<List<Seat>> getSeatsIdTicket(@RequestBody List<Ticket> data) {
+    
     List<Seat> listSeat = seatService.findSeatsByTicketId(data);
-
     return new ResponseEntity<List<Seat>>(listSeat, HttpStatus.OK);
   }
 
@@ -133,7 +138,6 @@ public class GameRestController {
 
     Game game = gameService.findById(id);
     if (game == null) {
-
       return new ResponseEntity<Game>(HttpStatus.NOT_FOUND);
     }
     gameService.delete(id);
@@ -144,7 +148,6 @@ public class GameRestController {
   public ResponseEntity<Game> updateGame(@PathVariable("id") int id, @RequestBody Game game) {
 
     Game currentGame = gameService.findById(id);
-
     if (currentGame == null) {
       return new ResponseEntity<Game>(HttpStatus.NOT_FOUND);
     }
