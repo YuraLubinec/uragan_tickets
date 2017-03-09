@@ -1,5 +1,5 @@
 angular.module('loginPage').component('loginPage', {
-  templateUrl : 'template/login',
+  templateUrl : 'resources/static/templates/login-page.template.html',
   controller : [ 'LoginPageService', '$rootScope', function LoginPageController(LoginPageService, $rootScope) {
     var main = this;
     main.login = login;

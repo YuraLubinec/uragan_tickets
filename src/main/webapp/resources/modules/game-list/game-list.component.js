@@ -1,5 +1,5 @@
 angular.module('gameList').component('gameList', {
-    templateUrl: 'template/games/',
+    templateUrl: 'resources/static/templates/game-list.template.html',
     controller: ['$scope', 'GameListService', function GameListController($scope, GameListService) {
       var main = this;
 

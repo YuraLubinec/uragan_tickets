@@ -1,7 +1,7 @@
 'use strict'
 angular.module('mainPage').component('mainPage', {
-  templateUrl : 'template/main/',
-  controller : [ 'MainPageService', '$window', function MainPageController(MainPageService, $window) {
+  templateUrl : 'resources/static/templates/main-page.template.html',
+  controller : [ 'MainPageService', function MainPageController(MainPageService) {
     var main = this;
     main.gameId = null;
     main.seatList = [];

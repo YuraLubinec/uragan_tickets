@@ -24,24 +24,32 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
 
-    http.authorizeRequests().antMatchers("/template/login","/template/navbar", "/").permitAll().anyRequest().authenticated().and()
-        .exceptionHandling().authenticationEntryPoint(entryPoint).and().formLogin().loginPage("/login")
-        .successHandler(successHandler).failureHandler(new SimpleUrlAuthenticationFailureHandler())
-        .loginProcessingUrl("/loginCheck").usernameParameter("username").passwordParameter("password").and().logout()
-        .logoutUrl("/logout").logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
-        .deleteCookies("JSESSIONID").and().csrf().disable();
-    
+    http.authorizeRequests()
+        .antMatchers("/", "/resources/static/templates/login-page.template.html",
+            "/resources/static/templates/navbar.template.html")
+        .permitAll().anyRequest().authenticated().and().exceptionHandling().authenticationEntryPoint(entryPoint).and()
+        .formLogin().loginPage("/login").successHandler(successHandler)
+        .failureHandler(new SimpleUrlAuthenticationFailureHandler()).loginProcessingUrl("/loginCheck")
+        .usernameParameter("username").passwordParameter("password").and().logout().logoutUrl("/logout")
+        .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler()).deleteCookies("JSESSIONID").and().csrf()
+        .disable();
   }
 
   @Bean
   public RestAuthenticationSuccessHandler successHandler() {
+
     return new RestAuthenticationSuccessHandler();
   }
 
   @Override
   public void configure(WebSecurity web) throws Exception {
 
-    web.ignoring().antMatchers("/resources/**");
+    web.ignoring().antMatchers("/resources/css/**");
+    web.ignoring().antMatchers("/resources/dist/**");
+    web.ignoring().antMatchers("/resources/images/**");
+    web.ignoring().antMatchers("/resources/modules/**");
+    web.ignoring().antMatchers("/resources/app.config.js");
+    web.ignoring().antMatchers("/resources/app.module.js");
 
   }
 

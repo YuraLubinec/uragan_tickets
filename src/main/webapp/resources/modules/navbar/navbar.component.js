@@ -1,6 +1,6 @@
 'use strict'
 angular.module('navbar').component('navbar', {
-  templateUrl : 'template/navbar',
+  templateUrl : 'resources/static/templates/navbar.template.html',
   controller : [ 'NavbarService', '$rootScope', '$interval', function NavbarController(NavbarService, $rootScope, $interval) {
     var main = this;
     $rootScope.access = null;
