@@ -5,9 +5,6 @@ import javax.servlet.Filter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.uragan.configuration.AppConfiguration;
-import com.uragan.filter.HeaderFilter;
-
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
   @Override
@@ -34,6 +31,6 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
     CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
     characterEncodingFilter.setEncoding("UTF-8");
     characterEncodingFilter.setForceEncoding(true);
-    return new Filter [] {characterEncodingFilter/*, new HeaderFilter()*/};
+    return new Filter [] {characterEncodingFilter};
   }
 }

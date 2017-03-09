@@ -15,24 +15,24 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.uragan")
-public class AppConfiguration extends WebMvcConfigurerAdapter{
-  
+public class AppConfiguration extends WebMvcConfigurerAdapter {
+
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
     registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-  } 
-  
+  }
+
   @Override
   public void configureViewResolvers(ViewResolverRegistry registry) {
-    
+
     InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
     viewResolver.setViewClass(JstlView.class);
     viewResolver.setPrefix("/WEB-INF/views/");
     viewResolver.setSuffix(".jsp");
     registry.viewResolver(viewResolver);
   }
-  
+
   @Bean
   public MessageSource messageSource() {
 
