@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan
+@ComponentScan("com.uragan.DAO")
 @PropertySource("classpath:datasource.properties")
 public class DatabaseConfiguration {
   
