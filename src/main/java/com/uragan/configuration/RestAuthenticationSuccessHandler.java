@@ -11,8 +11,10 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+@Component
 public class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
   
   private RequestCache requestCache = new HttpSessionRequestCache();
@@ -22,7 +24,6 @@ public class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
       Authentication authentication) throws ServletException, IOException {
 
     SavedRequest savedRequest = requestCache.getRequest(request, response);
-
     if (savedRequest == null) {
       clearAuthenticationAttributes(request);
       return;
@@ -34,7 +35,6 @@ public class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
       clearAuthenticationAttributes(request);
       return;
     }
-
     clearAuthenticationAttributes(request);
   }
 

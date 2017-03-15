@@ -8,24 +8,47 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+import org.springframework.social.connect.ConnectionFactoryLocator;
+import org.springframework.social.connect.ConnectionSignUp;
+import org.springframework.social.connect.UsersConnectionRepository;
+import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
+import org.springframework.social.connect.web.ProviderSignInController;
+
+import com.uragan.sevice.facebookOAuth.FacebookSignInAdapter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
+  
   @Autowired
   private RestUnauthorizedEntryPoint entryPoint;
 
   @Autowired
   private RestAuthenticationSuccessHandler successHandler;
 
+  @Autowired
+  private UserDetailsService userDetailsService;
+  
+  @Autowired
+  private ConnectionFactoryLocator connectionFactoryLocator;
+
+  @Autowired
+  private UsersConnectionRepository usersConnectionRepository;
+  
+  @Autowired
+  private ConnectionSignUp facebookConnectionSignup;
+  
+  @Autowired
+  private FacebookSignInAdapter facebookSignInAdapter; 
+
   @Override
   protected void configure(HttpSecurity http) throws Exception {
 
     http.authorizeRequests()
-        .antMatchers("/", "/resources/static/templates/login-page.template.html",
+        .antMatchers("/","/signin/**","/signup/**", "/resources/static/templates/login-page.template.html",
             "/resources/static/templates/navbar.template.html")
         .permitAll().anyRequest().authenticated().and().exceptionHandling().authenticationEntryPoint(entryPoint).and()
         .formLogin().loginPage("/login").successHandler(successHandler)
@@ -33,12 +56,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .usernameParameter("username").passwordParameter("password").and().logout().logoutUrl("/logout")
         .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler()).deleteCookies("JSESSIONID").and().csrf()
         .disable();
-  }
-
-  @Bean
-  public RestAuthenticationSuccessHandler successHandler() {
-
-    return new RestAuthenticationSuccessHandler();
   }
 
   @Override
@@ -50,13 +67,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     web.ignoring().antMatchers("/resources/modules/**");
     web.ignoring().antMatchers("/resources/app.config.js");
     web.ignoring().antMatchers("/resources/app.module.js");
-
   }
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-    auth.inMemoryAuthentication().withUser("user").password("user").roles("admin");
+    auth.userDetailsService(userDetailsService);
+  }
+  
+  @Bean
+  public ProviderSignInController providerSignInController() {
+      ((InMemoryUsersConnectionRepository) usersConnectionRepository).setConnectionSignUp(facebookConnectionSignup);
+      return new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository, facebookSignInAdapter);
   }
 
 }

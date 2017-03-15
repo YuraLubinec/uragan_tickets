@@ -1,6 +1,6 @@
 angular.module('loginPage').component('loginPage', {
   templateUrl : 'resources/static/templates/login-page.template.html',
-  controller : [ 'LoginPageService', '$rootScope', function LoginPageController(LoginPageService, $rootScope) {
+  controller : [ 'LoginPageService', '$rootScope', '$window', function LoginPageController(LoginPageService, $rootScope, $window) {
     var main = this;
     main.login = login;
     main.authenticationError = false;

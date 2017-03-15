@@ -1,33 +1,30 @@
 package com.uragan.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
-@Table(name = "sector")
-public class Sector {
-  private int id;
-  private String name;
-  private int price;
-  private Set<Seat> seats =  new HashSet<>();
+public class User implements Serializable {
 
+  private static final long serialVersionUID = 8339181716085936666L;
+
+  private int id;
+  private String username;
+  private String password;
+  private String role;
 
   @Id
-  @Column(name = "id")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   public int getId() {
     return id;
   }
@@ -36,32 +33,31 @@ public class Sector {
     this.id = id;
   }
 
-  @Column(name = "name")
-  public String getName() {
-    return name;
+  @Column
+  public String getUsername() {
+    return username;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
-  @Column(name = "price")
-  public int getPrice() {
-    return price;
+  @Column
+  public String getPassword() {
+    return password;
   }
 
-  public void setPrice(int price) {
-    this.price = price;
+  public void setPassword(String password) {
+    this.password = password;
+  }
+  
+  @Column  
+  public String getRole() {
+    return role;
   }
 
-  @OneToMany
-  @JoinColumn(name = "sector_id")
-  public Set<Seat> getSeats() {
-    return seats;
-  }
-
-  public void setSeats(Set<Seat> seats) {
-    this.seats = seats;
+  public void setRole(String role) {
+    this.role = role;
   }
 
   @Override

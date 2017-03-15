@@ -34,3 +34,8 @@ dependency-reduced-pom.xml
 log.txt
 *.log
 
+#properties
+
+application.properties
+
+

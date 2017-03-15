@@ -11,5 +11,5 @@ $locationProvider.hashPrefix('!');
     template : '<sector-page></sector-page>'
   }).when('/login', {
     template : '<login-page></login-page>'
-  }).otherwise('/');
+  });
 } ]);
