@@ -31,7 +31,7 @@ import com.uragan.sevice.SubscriptionService;
 import com.uragan.sevice.TicketService;
 
 @RestController
-public class GamePageRestController {
+class GamePageRestController {
 
   @Autowired
   GameService gameService;

@@ -2,7 +2,6 @@ package com.uragan.configuration;
 
 import javax.servlet.Filter;
 
-import org.apache.catalina.filters.CorsFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

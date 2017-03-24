@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.social.facebook.api.Facebook;
+import org.springframework.social.facebook.api.User;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,9 +41,23 @@ public class MainPageRestController {
   @Autowired
   private SeasonService serviceSeason;
 
+  @Autowired
+  private Facebook facebook;
+
   @GetMapping
   public ResponseEntity<List<Sector>> getAllSeats() {
-
+    
+    //Retrieving Facebook data
+//    String[] fields = { "id", "email", "age_range", "birthday", "first_name", "last_name", "gender" };
+//    User fbProfile = facebook.fetchObject("me", User.class, fields);
+//    System.out.println("*********" + fbProfile.getEmail());
+//    System.out.println("*********" + fbProfile.getId());
+//    System.out.println("*********" + fbProfile.getAgeRange());
+//    System.out.println("*********" + fbProfile.getBirthday());
+//    System.out.println("*********" + fbProfile.getGender());
+//    System.out.println("*********" + fbProfile.getFirstName());
+//    System.out.println("*********" + fbProfile.getLastName());
+    
     List<Sector> sectors = serviceSector.findAllSector();
     if (sectors.isEmpty()) {
       return new ResponseEntity<List<Sector>>(HttpStatus.NO_CONTENT);

@@ -16,6 +16,7 @@ import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInController;
+import org.springframework.social.facebook.api.impl.FacebookTemplate;
 
 import com.uragan.sevice.facebookOAuth.FacebookSignInAdapter;
 
@@ -80,5 +81,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
       ((InMemoryUsersConnectionRepository) usersConnectionRepository).setConnectionSignUp(facebookConnectionSignup);
       return new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository, facebookSignInAdapter);
   }
+  
+
 
 }
